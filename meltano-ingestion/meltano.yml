@@ -12,9 +12,10 @@ plugins:
     pip_url: git+https://github.com/MeltanoLabs/tap-csv.git
     config:
       files:
-      - entity: order_item
-        path: ../assets/olist_order_items_dataset.csv
-        keys: [order_item_id]
+      - entity: product_category_name_translation
+        path: ../assets/product_category_name_translation.csv
+        keys: [product_category_id]
+        clean_headers: true
 
       flattening_enabled: true
       flattening_max_depth: 1

@@ -39,7 +39,6 @@ plugins:
       - entity: product_category_name_translation
         path: ../assets/product_category_name_translation.csv
         keys: [product_category_id]
-
       flattening_enabled: true
       flattening_max_depth: 1
   loaders:
