@@ -18,15 +18,15 @@ plugins:
       - entity: geolocation
         path: ../assets/olist_geolocation_dataset.csv
         keys: [geolocation_zip_code_prefix]
-      - entity: orders_item
+      - entity: order_item
         path: ../assets/olist_order_items_dataset.csv
         keys: [order_item_id]
-      - entity: orders_payment
+      - entity: order_payment
         path: ../assets/olist_order_payments_dataset.csv
         keys: [order_payment_id]
-      - entity: orders_review
+      - entity: order_review
         path: ../assets/olist_order_reviews_dataset.csv
-        keys: [order_reviews_id]
+        keys: [order_review_id]
       - entity: order
         path: ../assets/olist_orders_dataset.csv
         keys: [order_id]
@@ -55,3 +55,4 @@ plugins:
       denormalized: true
       flattening_enabled: true
       flattening_max_depth: 1
+      batch_size: 5000
