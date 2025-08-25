@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: m2_ingestion     # raw staging area in BigQuery
+    tables:
+      - name: customer
+      - name: order
+      - name: order_item
+      - name: order_payment
+      - name: product
+      - name: seller
+      - name: order_review
+      - name: geolocation   

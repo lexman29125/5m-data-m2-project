@@ -1,0 +1,114 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Dimension table for customers"
+    columns:
+      - name: customer_id
+        description: "Primary key for customer"
+        tests:
+          - not_null
+          - unique
+      - name: customer_unique_id
+        tests:
+          - not_null
+      - name: customer_city
+      - name: customer_state
+
+  - name: dim_products
+    description: "Dimension table for products"
+    columns:
+      - name: product_id
+        description: "Primary key for product"
+        tests:
+          - not_null
+          - unique
+      - name: product_category_name_english
+      - name: product_weight_g
+      - name: product_length_cm
+      - name: product_height_cm
+      - name: product_width_cm
+
+  - name: dim_sellers
+    description: "Dimension table for sellers"
+    columns:
+      - name: seller_id
+        description: "Primary key for seller"
+        tests:
+          - not_null
+          - unique
+      - name: seller_city
+      - name: seller_state
+
+  - name: dim_dates
+    description: "Dimension table for dates"
+    columns:
+      - name: date_key
+        description: "Primary key for date"
+        tests:
+          - not_null
+          - unique
+      - name: full_date
+      - name: day_of_week
+      - name: month_name
+      - name: year
+      - name: quarter
+
+  - name: dim_payments
+    description: "Dimension table for payments"
+    columns:
+      - name: payment_type_key
+        description: "Primary key for payment type"
+        tests:
+          - not_null
+          - unique
+      - name: payment_type
+
+  - name: fact_order_items
+    description: "Fact table for order items"
+    columns:
+      - name: order_id
+        description: "Primary key for order item"
+        tests:
+          - not_null
+          - unique
+        relationships:
+          - to: ref('dim_customers')
+            field: customer_id
+      - name: order_item_id
+        tests:
+          - not_null
+      - name: product_id
+        tests:
+          - not_null
+        relationships:
+          - to: ref('dim_products')
+            field: product_id
+      - name: seller_id
+        tests:
+          - not_null
+        relationships:
+          - to: ref('dim_sellers')
+            field: seller_id
+      - name: customer_id
+        tests:
+          - not_null
+        relationships:
+          - to: ref('dim_customers')
+            field: customer_id
+      - name: order_date_key
+        tests:
+          - not_null
+        relationships:
+          - to: ref('dim_dates')
+            field: date_key
+      - name: payment_type_key
+        tests:
+          - not_null
+        relationships:
+          - to: ref('dim_payments')
+            field: payment_type_key
+      - name: price
+      - name: freight_value
+      - name: review_score
+      - name: delivery_time_days
