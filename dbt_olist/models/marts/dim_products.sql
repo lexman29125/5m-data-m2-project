@@ -8,5 +8,5 @@ select
     p.product_height_cm,
     p.product_width_cm
 from {{ ref('stg_products') }} p
-left join {{ ref('product_category_name_translation') }} t
-    on p.product_category_name = t.product_category_name
+left join {{ ref('stg_product_category_name_translation') }} t
+  on p.product_category_name = t.product_category_name

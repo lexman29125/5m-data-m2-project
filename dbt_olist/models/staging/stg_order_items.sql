@@ -1,11 +1,11 @@
-with source as (
-    select * from {{ source('raw', 'order_item') }}
-)
+{{ config(materialized='view') }}
+
 select
     order_id,
     order_item_id,
     product_id,
     seller_id,
+    shipping_limit_date,
     price,
     freight_value
-from source
+from {{ source('raw', 'order_item') }}

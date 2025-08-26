@@ -12,3 +12,4 @@ sources:
       - name: seller
       - name: order_review
       - name: geolocation   
+      - name: product_category_name_translation

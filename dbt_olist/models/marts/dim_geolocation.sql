@@ -1,9 +1,9 @@
 {{ config(materialized='table') }}
 
-select distinct
-    zip_prefix as geolocation_zip_prefix,
+select
+    geolocation_zip_code_prefix as zip_prefix,
+    latitude,
+    longitude,
     city,
-    state,
-    lat,
-    lng
+    state
 from {{ ref('stg_geolocation') }}
