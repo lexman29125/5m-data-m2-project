@@ -1,4 +1,4 @@
-# Job Failed: BrokenPipeError: [Errno 32] Broken pipe
+# Meltano EL Job Failed: BrokenPipeError: [Errno 32] Broken pipe
 Option A — Increase the file descriptor limit Temporarily raise limit (for current shell session) ulimit -n 4096
 
 Option B — Batch your CSVs • Instead of reading hundreds of files at once, process them in smaller groups. • In meltano.yml, only list a subset of CSVs as streams per run.
@@ -12,7 +12,7 @@ batch_size: 500 # default might be 1000+
 
 Combination of options A, B and D, the local machine is able to complete the jobs successfully with ~10mins per batch.
 
-# Job Failed 2:
+# Meltano EL Job Failed 2:
 When running product_category_name_translation.csv
 
 [info ] google.api_core.exceptions.BadRequest: 400 POST https://bigquery.googleapis.com/bigquery/v2/projects/sound-vehicle-468314-q4/datasets/m2_ingestion/tables?prettyPrint=false: Invalid field name "﻿product_category_name". Fields must contain the allowed characters, and be at most 300 characters long. For allowed characters, please refer to https://cloud.google.com/bigquery/docs/schemas#column_names
@@ -48,7 +48,7 @@ singer taps/targets cache the inferred schema from the first run. If the BOM was
 	•	Or just blow away the cache completely:
 rm -rf .meltano/
 
-# dbt Job Error:
+# dbt run Job Error:
 
 When executing "dbt run"
 
@@ -183,12 +183,9 @@ Alright, the logs are telling us exactly what went wrong:
 
 Unrecognized name: order_purchase_timestamp at [18:11]
 
-
 	2.	fact_order_items model
 
 Unrecognized name: order_purchase_timestamp at [22:14]
-
-
 
 This means that BigQuery does not know the column order_purchase_timestamp in the context where you’re referencing it. It’s not a dbt bug—your SQL is trying to use a column that either:
 	•	Doesn’t exist in the upstream table or view you’re selecting from,
@@ -218,4 +215,30 @@ limit 10
 
 dbt run --full-refresh
 
+# dbt test Job Error:
 
+Failure in test not_null_fact_order_items_payment_type_key
+Failure in test not_null_my_first_dbt_model_id
+Failure in test unique_dim_customers_customer_id
+Failure in test unique_fact_order_items_order_id
+
+## Solution & Reasons:
+	•	not_null_fact_order_items_payment_type_key → There are rows in fact_order_items where payment_type_key is NULL. Likely because some orders don’t have a payment record. You can:
+	•	Option A: Fix staging model stg_order_payments or the join in fact_order_items to handle missing payment info using LEFT JOIN and COALESCE.
+	•	Option B: Decide that NULL payments are acceptable and remove the not_null test on that column.
+	•	unique_dim_customers_customer_id → There are duplicates in dim_customers.customer_id.
+Likely caused by multiple geolocation rows per zip code. You can:
+	•	Aggregate stg_geolocation with ANY_VALUE or AVG so the join produces unique customer_id rows.
+	•	Ensure dim_customers select has DISTINCT c.customer_id.
+	•	unique_fact_order_items_order_id → Multiple order_item_ids exist per order_id.
+This is expected: one order has multiple items. You shouldn’t test order_id uniqueness in the fact table. Instead:
+	•	Change the test to unique(order_id, order_item_id) or remove it.
+	•	not_null_my_first_dbt_model_id → This comes from my_first_dbt_model, which is a sample model you no longer need.
+
+## Rerun dbt test:
+
+dbt clean
+dbt deps
+dbt seed
+dbt run --full-refresh
+dbt test
