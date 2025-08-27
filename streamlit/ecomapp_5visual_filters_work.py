@@ -43,32 +43,24 @@ states, payments = get_options()
 # -------------------------
 st.sidebar.header("Filters")
 
-# Year range selection (2016 - 2025)
-years = list(range(2016, 2026))
-start_year = st.sidebar.selectbox("Start Year", years, index=0)
-end_year = st.sidebar.selectbox("End Year", years, index=len(years)-1)
-
-if end_year < start_year:
-    st.sidebar.error("End Year must be greater than or equal to Start Year.")
-    st.stop()
-
-# Convert years to date strings in format YYYYMMDD for query
-start_date_str = f"{start_year}0101"
-end_date_str = f"{end_year}1231"
+date_range = st.sidebar.date_input("Order Date Range", [])
+if len(date_range) == 2:
+    start_date, end_date = date_range
+else:
+    start_date, end_date = None, None
 
 selected_states = st.sidebar.multiselect("Customer State", states, default=states)
 selected_payments = st.sidebar.multiselect("Payment Type", payments, default=payments)
 
 conditions = []
-conditions.append(f"CAST(order_date_key AS STRING) BETWEEN '{start_date_str}' AND '{end_date_str}'")
-
+if start_date and end_date:
+    conditions.append(f"CAST(order_date_key AS STRING) BETWEEN '{start_date.strftime('%Y%m%d')}' AND '{end_date.strftime('%Y%m%d')}'")
 if selected_states:
     state_list = ", ".join(f"'{state}'" for state in selected_states)
     conditions.append(f"c.customer_state IN ({state_list})")
 if selected_payments:
     payment_list = ", ".join(f"'{ptype}'" for ptype in selected_payments)
     conditions.append(f"p.payment_type IN ({payment_list})")
-
 where_clause = "WHERE " + " AND ".join(conditions) if conditions else ""
 
 # -------------------------
