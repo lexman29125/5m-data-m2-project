@@ -12,6 +12,30 @@ batch_size: 500 # default might be 1000+
 
 Combination of options A, B and D, the local machine is able to complete the jobs successfully with ~10mins per batch.
 
+Option E - Stage using DuckDB
+
+Stage in DuckDB first
+
+DuckDB is a columnar, vectorized database that can:
+	•	Ingest CSVs really fast (COPY or read_csv_auto).
+	•	Store them in a compact columnar format (Parquet/Arrow).
+	•	Push data in batch instead of row-by-row.
+
+So the flow becomes:
+	1.	Load CSV → DuckDB (super fast, optimized).
+	2.	Export from DuckDB → Parquet or Arrow.
+	3.	Load Parquet/Arrow → BigQuery (bulk load, much faster).
+
+Why it speeds things up
+	•	Columnar storage (Parquet/Arrow) = fewer bytes to move than raw CSV.
+	•	Parallel I/O → DuckDB vectorizes reads/writes.
+	•	BigQuery loves Parquet (native ingestion optimization).
+
+Caveats
+	•	You’re adding an extra staging step (CSV → DuckDB → BigQuery) vs direct stream.
+	•	If the CSV is small, the overhead isn’t worth it.
+	•	If the pipeline already uses Google Cloud Storage (GCS) as staging, pushing CSV → GCS → BigQuery might be simpler than adding DuckDB.
+
 # Meltano EL Job Failed 2:
 When running product_category_name_translation.csv
 
