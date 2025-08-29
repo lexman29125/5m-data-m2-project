@@ -10,5 +10,6 @@ select
     format_date('%A', full_date) as day_of_week,
     format_date('%B', full_date) as month_name,
     extract(year from full_date) as year,
-    extract(quarter from full_date) as quarter
+    extract(quarter from full_date) as quarter,
+    current_timestamp as record_loaded_at
 from dates

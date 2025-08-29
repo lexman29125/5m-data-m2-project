@@ -11,6 +11,9 @@ models:
       - name: customer_unique_id
         tests:
           - not_null
+      - name: customer_zip_code_prefix
+        tests:
+          - not_null
 
   - name: stg_geolocation
     description: "Staging table for geolocation data."
@@ -42,13 +45,6 @@ models:
 
   - name: stg_order_payments
     description: "Staging table for order payments"
-    columns:
-      - name: order_id
-        tests:
-          - not_null
-      - name: payment_sequential
-        tests:
-          - not_null
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
@@ -64,6 +60,12 @@ models:
       - name: order_id
         tests:
           - not_null
+      - name: review_score
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 1
+              max_value: 5
 
   - name: stg_orders
     description: "Staging table for orders"
@@ -74,6 +76,11 @@ models:
       - name: customer_id
         tests:
           - not_null
+      - name: order_purchase_timestamp
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: timestamp
 
   - name: stg_products
     description: "Staging table for products."
