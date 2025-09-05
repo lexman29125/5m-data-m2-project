@@ -3,11 +3,20 @@ models:
 
   - name: fact_order_items
     description: "Central fact table containing order item transactions with foreign keys to dimension tables"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - order_id
+            - order_item_id
     columns:
+      - name: order_item_key
+        description: "Surrogate key generated from order_id and order_item_id"
+        tests:
+          - unique
+          - not_null
       - name: order_item_id
         description: "Unique identifier for each order item (Primary Key)"
         tests:
-          - unique
           - not_null
       - name: order_id
         description: "Foreign key to orders"
@@ -48,6 +57,9 @@ models:
           - relationships:
               to: ref('dim_payments')
               field: payment_type_key
+              # Add config to handle the default '-1' value
+              config:
+                where: "payment_type_key != '-1'"
       - name: price
         description: "Item price in local currency"
         tests:
