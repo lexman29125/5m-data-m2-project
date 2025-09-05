@@ -1,5 +1,6 @@
 {{ config(materialized='table') }}
 
+with payment_types as (
 select distinct
     {{ dbt_utils.generate_surrogate_key(['payment_type']) }} as payment_type_key,
     payment_type,
@@ -19,3 +20,16 @@ select distinct
     current_timestamp() as loaded_at
 from {{ ref('stg_order_payments') }}
 where payment_type is not null
+
+UNION ALL
+    
+    -- Add the default '-1' key for missing payment types
+    select 
+        '-1' as payment_type_key,
+        'not_defined' as payment_type,
+        'Not Defined' as payment_description,
+        'Unknown' as payment_category,
+        current_timestamp() as loaded_at
+)
+
+select * from payment_types
