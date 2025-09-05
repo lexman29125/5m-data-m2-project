@@ -1,8 +1,15 @@
 {{ config(materialized='table') }}
 
 with dates as (
-    select distinct cast(order_purchase_timestamp as date) as full_date
-    from {{ ref('stg_orders') }}
+    -- Use the same date extraction logic as fact table
+    select distinct date(order_purchase_timestamp) as full_date
+    from {{ ref('stg_orders') }} o
+    where order_purchase_timestamp is not null
+      and exists (
+          select 1 
+          from {{ ref('stg_order_items') }} oi 
+          where oi.order_id = o.order_id
+      )
 )
 select
     cast(format_date('%Y%m%d', full_date) as int64) as date_key,
