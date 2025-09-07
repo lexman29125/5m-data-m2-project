@@ -1,129 +1,179 @@
 version: 2
-
 models:
-  - name: dim_customers
-    description: "Dimension table for customers"
-    columns:
-      - name: customer_id
-        description: "Primary key for customer"
-        tests:
-          - not_null
-          - unique
-      - name: customer_unique_id
-        description: "Unique customer identifier"
-        tests:
-          - not_null
-      - name: customer_city
-      - name: customer_state
-      - name: latitude
-      - name: longitude
-
-  - name: dim_products
-    description: "Dimension table for products"
-    columns:
-      - name: product_id
-        description: "Primary key for product"
-        tests:
-          - not_null
-          - unique
-      - name: product_category_name_english
-      - name: product_weight_g
-      - name: product_length_cm
-      - name: product_height_cm
-      - name: product_width_cm
-
-  - name: dim_sellers
-    description: "Dimension table for sellers"
-    columns:
-      - name: seller_id
-        description: "Primary key for seller"
-        tests:
-          - not_null
-          - unique
-      - name: seller_city
-      - name: seller_state
-      - name: latitude
-      - name: longitude
-
-  - name: dim_geolocation
-    description: "Dimension table for geolocations by zip prefix"
-    columns:
-      - name: geolocation_zip_code_prefix
-        description: "Primary key for geolocation (zip prefix)"
-        tests:
-          - not_null
-          - unique
-      - name: city
-      - name: state
-      - name: latitude
-      - name: longitude
-
-  - name: dim_dates
-    description: "Dimension table for dates"
-    columns:
-      - name: date_key
-        description: "Primary key for date"
-        tests:
-          - not_null
-          - unique
-      - name: full_date
-      - name: day_of_week
-      - name: month_name
-      - name: year
-      - name: quarter
-
-  - name: dim_payments
-    description: "Dimension table for payments"
-    columns:
-      - name: payment_type_key
-        description: "Primary key for payment type"
-        tests:
-          - not_null
-          - unique
-      - name: payment_type
 
   - name: fact_order_items
-    description: "Fact table for order items"
+    description: "Central fact table containing order item transactions with foreign keys to dimension tables"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - order_id
+            - order_item_id
     columns:
+      - name: order_item_key
+        description: "Surrogate key generated from order_id and order_item_id"
+        tests:
+          - unique
+          - not_null
       - name: order_item_id
-        description: "Primary key for fact row"
+        description: "Unique identifier for each order item (Primary Key)"
         tests:
           - not_null
-          - unique
       - name: order_id
+        description: "Foreign key to orders"
         tests:
           - not_null
       - name: product_id
+        description: "Foreign key to dim_products"
         tests:
           - not_null
           - relationships:
               to: ref('dim_products')
               field: product_id
       - name: seller_id
+        description: "Foreign key to dim_sellers"
         tests:
           - not_null
           - relationships:
               to: ref('dim_sellers')
               field: seller_id
       - name: customer_id
+        description: "Foreign key to dim_customers"
         tests:
           - not_null
           - relationships:
               to: ref('dim_customers')
               field: customer_id
       - name: order_date_key
+        description: "Foreign key to dim_orders (date dimension)"
         tests:
           - not_null
           - relationships:
-              to: ref('dim_dates')
+              to: ref('dim_orders')
               field: date_key
       - name: payment_type_key
+        description: "Foreign key to dim_payments (-1 for unknown)"
         tests:
           - not_null
           - relationships:
               to: ref('dim_payments')
               field: payment_type_key
+              # Add config to handle the default '-1' value
+              config:
+                where: "payment_type_key != '-1'"
       - name: price
+        description: "Item price in local currency"
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: numeric
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
       - name: freight_value
+        description: "Shipping cost for the item"
+        tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: numeric
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
       - name: review_score
+        description: "Customer review score (1-5)"
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 1
+              max_value: 5
       - name: delivery_time_days
+        description: "Days between order purchase and delivery"
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 365
+
+  - name: dim_products
+    description: "Product dimension containing product attributes"
+    columns:
+      - name: product_id
+        description: "Unique product identifier (Primary Key)"
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_customers
+    description: "Customer dimension with geographic information"
+    columns:
+      - name: customer_id
+        description: "Unique customer identifier (Primary Key)"
+        tests:
+          - unique
+          - not_null
+      - name: geolocation_id
+        description: "Foreign key to dim_geolocation"
+        tests:
+          - relationships:
+              to: ref('dim_geolocation')
+              field: geolocation_id
+
+  - name: dim_sellers
+    description: "Seller dimension with geographic information"
+    columns:
+      - name: seller_id
+        description: "Unique seller identifier (Primary Key)"
+        tests:
+          - unique
+          - not_null
+      - name: geolocation_id
+        description: "Foreign key to dim_geolocation"
+        tests:
+          - relationships:
+              to: ref('dim_geolocation')
+              field: geolocation_id
+
+  - name: dim_geolocation
+    description: "Geographic dimension for customers and sellers"
+    columns:
+      - name: geolocation_id
+        description: "Unique geographic location identifier (Primary Key)"
+        tests:
+          - unique
+          - not_null
+      - name: geolocation_zip_code_prefix
+        description: "ZIP code prefix"
+      - name: latitude
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: -90
+              max_value: 90
+      - name: longitude
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: -180
+              max_value: 180
+
+  - name: dim_dates
+    description: "Date dimension for order analysis"
+    columns:
+      - name: date_key
+        description: "Date key (Primary Key)"
+        tests:
+          - unique
+          - not_null
+      - name: day_of_week
+        tests:
+          - dbt_expectations.expect_column_values_to_be_in_set:
+              value_set: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+      - name: month_name
+        tests:
+          - dbt_expectations.expect_column_values_to_be_in_set:
+              value_set: ["January","February","March","April","May","June","July","August","September","October","November","December"]
+
+  - name: dim_payments
+    description: "Payment type dimension"
+    columns:
+      - name: payment_type_key
+        description: "Unique payment type key (Primary Key)"
+        tests:
+          - unique
+          - not_null
+      - name: payment_type
+        tests:
+          - dbt_expectations.expect_column_values_to_be_in_set:
+              value_set: ["credit_card","debit_card","boleto","voucher","not_defined"]
