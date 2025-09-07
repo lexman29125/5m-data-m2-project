@@ -3,15 +3,18 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from olist_report import run_query, TABLE_FACT, TABLE_PRODUCTS, TABLE_CUSTOMERS, create_state_filter, get_state_filter_sql_clause
+from olist_report import run_query, TABLE_FACT, TABLE_PRODUCTS, TABLE_CUSTOMERS, create_state_filter, get_state_filter_sql_clause, create_year_filter, get_year_filter_sql_clause, TABLE_DATES
 
 # -------------------------
 # Page Content
 # -------------------------
 st.title("Product Analytics")
 
-# Create the customer state filter UI
+# Create the customer state and year filters UI
 selected_states = create_state_filter(TABLE_CUSTOMERS)
+selected_years = create_year_filter(TABLE_DATES)
+st.session_state.selected_states = selected_states
+st.session_state.selected_years = selected_years
 
 # Use tabs to organize content
 tab1, tab2 = st.tabs(["Category Performance", "Reviews & Dimensions"])
@@ -21,6 +24,7 @@ with tab1:
     
     # Query for product category performance
     state_filter = get_state_filter_sql_clause("c", selected_states)
+    year_filter = get_year_filter_sql_clause("d", st.session_state.selected_years)
     sql_category_performance = f"""
     SELECT
         pr.product_category_name_english AS category,
@@ -31,7 +35,9 @@ with tab1:
         ON f.product_id = pr.product_id
     JOIN `{TABLE_CUSTOMERS}` c
         ON f.customer_id = c.customer_id
-    WHERE TRUE {state_filter}
+    JOIN `{TABLE_DATES}` d
+        ON f.order_date_key = d.date_key
+    WHERE TRUE {state_filter} {year_filter}
     GROUP BY 1
     ORDER BY total_revenue DESC
     LIMIT 20
@@ -58,6 +64,7 @@ with tab2:
     
     # Query for review score by product category
     state_filter = get_state_filter_sql_clause("c", selected_states)
+    year_filter = get_year_filter_sql_clause("d", st.session_state.selected_years)
     sql_reviews_by_category = f"""
     SELECT
         pr.product_category_name_english AS category,
@@ -67,8 +74,10 @@ with tab2:
         ON f.product_id = pr.product_id
     JOIN `{TABLE_CUSTOMERS}` c
         ON f.customer_id = c.customer_id
+    JOIN `{TABLE_DATES}` d
+        ON f.order_date_key = d.date_key
     WHERE f.review_score IS NOT NULL
-        AND TRUE {state_filter}
+        AND TRUE {state_filter} {year_filter}
     GROUP BY 1
     ORDER BY avg_review_score DESC
     LIMIT 20
@@ -85,6 +94,7 @@ with tab2:
         
     # Query for product weight vs. review score
     state_filter = get_state_filter_sql_clause("c", selected_states)
+    year_filter = get_year_filter_sql_clause("d", st.session_state.selected_years)
     sql_weight_vs_review = f"""
     SELECT
         SAFE_CAST(pr.product_weight_g AS FLOAT64) AS weight_g,
@@ -94,10 +104,12 @@ with tab2:
         ON f.product_id = pr.product_id
     JOIN `{TABLE_CUSTOMERS}` c
         ON f.customer_id = c.customer_id
+    JOIN `{TABLE_DATES}` d
+        ON f.order_date_key = d.date_key
     WHERE
         pr.product_weight_g IS NOT NULL
         AND f.review_score IS NOT NULL
-        AND TRUE {state_filter}
+        AND TRUE {state_filter} {year_filter}
     GROUP BY 1
     """
     df_weight_vs_review = run_query(sql_weight_vs_review)

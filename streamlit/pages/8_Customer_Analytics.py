@@ -3,15 +3,27 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from olist_report import run_query, TABLE_CUSTOMERS, TABLE_FACT, create_state_filter, get_state_filter_sql_clause
+from olist_report import (
+    run_query,
+    TABLE_CUSTOMERS,
+    TABLE_FACT,
+    create_state_filter,
+    get_state_filter_sql_clause,
+    create_year_filter,
+    get_year_filter_sql_clause,
+    TABLE_DATES,
+)
 
 # -------------------------
 # Page Content
 # -------------------------
 st.title("Customer Analytics")
 
-# Create the customer state filter UI
+# Create the customer state and year filters UI
 selected_states = create_state_filter(TABLE_CUSTOMERS)
+selected_years = create_year_filter(TABLE_DATES)
+st.session_state.selected_states = selected_states
+st.session_state.selected_years = selected_years
 
 # Use tabs to organize content
 tab1, tab2 = st.tabs(["Customer Demographics", "Order Behavior"])
@@ -19,14 +31,17 @@ tab1, tab2 = st.tabs(["Customer Demographics", "Order Behavior"])
 with tab1:
     st.header("Customer Demographics")
 
-    # Query for unique customers by state
+    # Query for unique customers by state (with year filter)
     state_filter = get_state_filter_sql_clause("c", selected_states)
+    year_filter = get_year_filter_sql_clause("d", st.session_state.selected_years)
     sql_customers_by_state = f"""
     SELECT
-        customer_state,
-        COUNT(DISTINCT customer_unique_id) AS total_customers
+        c.customer_state,
+        COUNT(DISTINCT c.customer_unique_id) AS total_customers
     FROM `{TABLE_CUSTOMERS}` c
-    WHERE TRUE {state_filter}
+    JOIN `{TABLE_FACT}` f ON c.customer_id = f.customer_id
+    JOIN `{TABLE_DATES}` d ON f.order_date_key = d.date_key
+    WHERE TRUE {state_filter} {year_filter}
     GROUP BY 1
     ORDER BY total_customers DESC
     """
@@ -43,16 +58,17 @@ with tab1:
 with tab2:
     st.header("Customer Order Behavior")
     
-    # Query for orders per customer
+    # Query for orders per customer (with year filter)
     state_filter = get_state_filter_sql_clause("c", selected_states)
+    year_filter = get_year_filter_sql_clause("d", st.session_state.selected_years)
     sql_orders_per_customer = f"""
     SELECT
         c.customer_unique_id,
         COUNT(DISTINCT f.order_id) AS total_orders
     FROM `{TABLE_CUSTOMERS}` c
-    JOIN `{TABLE_FACT}` f
-        ON c.customer_id = f.customer_id
-    WHERE TRUE {state_filter}
+    JOIN `{TABLE_FACT}` f ON c.customer_id = f.customer_id
+    JOIN `{TABLE_DATES}` d ON f.order_date_key = d.date_key
+    WHERE TRUE {state_filter} {year_filter}
     GROUP BY 1
     """
     df_orders_per_customer = run_query(sql_orders_per_customer)
@@ -65,16 +81,17 @@ with tab2:
     else:
         st.warning("No data found for orders per customer with the current filter selection.")
 
-    # Query for average spending per customer
+    # Query for average spending per customer (with year filter)
     state_filter = get_state_filter_sql_clause("c", selected_states)
+    year_filter = get_year_filter_sql_clause("d", st.session_state.selected_years)
     sql_avg_spending = f"""
     SELECT
         c.customer_unique_id,
         SUM(SAFE_CAST(f.price AS FLOAT64)) AS total_spent
     FROM `{TABLE_CUSTOMERS}` c
-    JOIN `{TABLE_FACT}` f
-        ON c.customer_id = f.customer_id
-    WHERE TRUE {state_filter}
+    JOIN `{TABLE_FACT}` f ON c.customer_id = f.customer_id
+    JOIN `{TABLE_DATES}` d ON f.order_date_key = d.date_key
+    WHERE TRUE {state_filter} {year_filter}
     GROUP BY 1
     """
     df_avg_spending = run_query(sql_avg_spending)

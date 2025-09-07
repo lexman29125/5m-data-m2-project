@@ -3,7 +3,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from olist_report import run_query, TABLE_FACT, TABLE_CUSTOMERS, TABLE_DATES, create_state_filter, get_state_filter_sql_clause
+from olist_report import run_query, TABLE_FACT, TABLE_CUSTOMERS, TABLE_DATES, create_state_filter, get_state_filter_sql_clause, create_year_filter, get_year_filter_sql_clause
 
 # -------------------------
 # Page Content
@@ -12,6 +12,9 @@ st.title("Customer Insights")
 
 # Create the customer state filter UI
 selected_states = create_state_filter(TABLE_CUSTOMERS)
+selected_years = create_year_filter(TABLE_DATES)
+st.session_state.selected_states = selected_states
+st.session_state.selected_years = selected_years
 
 # Use tabs for different sections of analysis
 tab1, tab2 = st.tabs(["Customer Overview", "Customer Segmentation"])
@@ -19,12 +22,15 @@ tab1, tab2 = st.tabs(["Customer Overview", "Customer Segmentation"])
 with tab1:
     st.header("Overall Customer Metrics")
     
-    # Apply the state filter to this query.
+    # Apply the state filter and year filter to this query.
     state_filter = get_state_filter_sql_clause("c", selected_states)
+    year_filter = get_year_filter_sql_clause("d", st.session_state.selected_years)
     sql_total_customers = f"""
     SELECT COUNT(DISTINCT c.customer_unique_id) AS total_customers
     FROM `{TABLE_CUSTOMERS}` c
-    WHERE TRUE {state_filter}
+    JOIN `{TABLE_FACT}` f ON f.customer_id = c.customer_id
+    JOIN `{TABLE_DATES}` d ON f.order_date_key = d.date_key
+    WHERE TRUE {state_filter} {year_filter}
     """
     df_total_customers = run_query(sql_total_customers)
     
@@ -36,6 +42,7 @@ with tab2:
 
     # SQL query to get RFM data
     state_filter = get_state_filter_sql_clause("c", selected_states)
+    year_filter = get_year_filter_sql_clause("d", st.session_state.selected_years)
     sql_rfm = f"""
     SELECT
         c.customer_unique_id,
@@ -47,7 +54,7 @@ with tab2:
         ON f.customer_id = c.customer_id
     JOIN `{TABLE_DATES}` d
         ON f.order_date_key = d.date_key
-    WHERE TRUE {state_filter}
+    WHERE TRUE {state_filter} {year_filter}
     GROUP BY c.customer_unique_id
     """
 

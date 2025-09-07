@@ -3,15 +3,28 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from olist_report import run_query, TABLE_FACT, TABLE_CUSTOMERS, TABLE_STG_ORDERS, TABLE_DATES, create_state_filter, get_state_filter_sql_clause
+from olist_report import (
+    run_query,
+    TABLE_FACT,
+    TABLE_CUSTOMERS,
+    TABLE_STG_ORDERS,
+    TABLE_DATES,
+    create_state_filter,
+    get_state_filter_sql_clause,
+    create_year_filter,
+    get_year_filter_sql_clause,
+)
 
 # -------------------------
 # Page Content
 # -------------------------
 st.title("Order Fulfillment & Delivery")
 
-# Create the customer state filter UI
+# Create the customer state and year filter UI
 selected_states = create_state_filter(TABLE_CUSTOMERS)
+selected_years = create_year_filter(TABLE_DATES)
+st.session_state.selected_states = selected_states
+st.session_state.selected_years = selected_years
 
 # Use tabs to organize content
 tab1, tab2, tab3 = st.tabs(["Delivery Times", "Performance by Location", "Delivery Rates"])
@@ -19,8 +32,9 @@ tab1, tab2, tab3 = st.tabs(["Delivery Times", "Performance by Location", "Delive
 with tab1:
     st.header("Overall Delivery Time Trend")
 
-    # This query uses the customer state filter.
+    # This query uses the customer state and year filter.
     state_filter = get_state_filter_sql_clause("c", selected_states)
+    year_filter = get_year_filter_sql_clause("d", st.session_state.selected_years)
     sql_delivery_trend = f"""
     SELECT
         FORMAT_DATE('%Y-%m', d.full_date) AS month,
@@ -30,7 +44,7 @@ with tab1:
         ON f.order_date_key = d.date_key
     JOIN `{TABLE_CUSTOMERS}` c
         ON f.customer_id = c.customer_id
-    WHERE TRUE {state_filter}
+    WHERE TRUE {state_filter} {year_filter}
     GROUP BY 1
     ORDER BY 1
     """
@@ -47,16 +61,19 @@ with tab1:
 with tab2:
     st.header("Average Delivery Time by Customer State")
 
-    # This query already uses customer state, so we just need to apply the filter.
+    # This query uses the customer state and year filter.
     state_filter = get_state_filter_sql_clause("c", selected_states)
+    year_filter = get_year_filter_sql_clause("d", st.session_state.selected_years)
     sql_delivery_by_state = f"""
     SELECT
         c.customer_state,
         AVG(f.delivery_time_days) AS avg_delivery_days
     FROM `{TABLE_FACT}` f
+    JOIN `{TABLE_DATES}` d
+        ON f.order_date_key = d.date_key
     JOIN `{TABLE_CUSTOMERS}` c
         ON f.customer_id = c.customer_id
-    WHERE TRUE {state_filter}
+    WHERE TRUE {state_filter} {year_filter}
     GROUP BY 1
     ORDER BY 2 DESC
     """

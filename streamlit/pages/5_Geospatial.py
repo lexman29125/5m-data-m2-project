@@ -5,7 +5,7 @@ import pandas as pd
 import plotly.express as px
 import os
 import plotly.graph_objects as go
-from olist_report import run_query, TABLE_FACT, TABLE_CUSTOMERS, TABLE_SELLERS, TABLE_GEOLOCATION, TABLE_STG_CUSTOMERS, TABLE_STG_SELLERS, haversine, create_state_filter, get_state_filter_sql_clause
+from olist_report import run_query, TABLE_FACT, TABLE_CUSTOMERS, TABLE_SELLERS, TABLE_GEOLOCATION, TABLE_STG_CUSTOMERS, TABLE_STG_SELLERS, haversine, create_state_filter, get_state_filter_sql_clause, create_year_filter, get_year_filter_sql_clause, TABLE_DATES
 
 # -------------------------
 # Page Content
@@ -14,6 +14,9 @@ st.title("Geospatial Analytics")
 
 # Create the customer state filter UI
 selected_states = create_state_filter(TABLE_CUSTOMERS)
+selected_years = create_year_filter(TABLE_DATES)
+st.session_state.selected_states = selected_states
+st.session_state.selected_years = selected_years
 
 # Use tabs to organize content
 tab1, tab2, tab3 = st.tabs(["Sales Heatmap", "Seller vs. Customer Locations", "Delivery Routes"])
@@ -21,7 +24,8 @@ tab1, tab2, tab3 = st.tabs(["Sales Heatmap", "Seller vs. Customer Locations", "D
 with tab1:
     st.header("Revenue by State")
 
-    state_filter = get_state_filter_sql_clause("c", selected_states)
+    state_filter = get_state_filter_sql_clause("c", st.session_state.selected_states)
+    year_filter = get_year_filter_sql_clause("d", st.session_state.selected_years)
     sql_sales_by_state = f"""
     SELECT
         c.customer_state,
@@ -29,7 +33,9 @@ with tab1:
     FROM `{TABLE_FACT}` f
     JOIN `{TABLE_CUSTOMERS}` c
         ON f.customer_id = c.customer_id
-    WHERE TRUE {state_filter}
+    JOIN `{TABLE_DATES}` d
+        ON f.order_date_key = d.date_key
+    WHERE TRUE {state_filter} {year_filter}
     GROUP BY 1
     ORDER BY 2 DESC
     """
@@ -47,7 +53,8 @@ with tab2:
     st.header("Geographic Distribution")
 
     # Corrected query for customer locations
-    state_filter = get_state_filter_sql_clause("c", selected_states)
+    state_filter = get_state_filter_sql_clause("c", st.session_state.selected_states)
+    year_filter = get_year_filter_sql_clause("d", st.session_state.selected_years)
     sql_customer_locations = f"""
     SELECT
         c.customer_unique_id,
@@ -58,7 +65,11 @@ with tab2:
         ON c.customer_id = sc.customer_id
     JOIN `{TABLE_GEOLOCATION}` g
         ON sc.customer_zip_code_prefix = g.geolocation_zip_code_prefix
-    WHERE TRUE {state_filter}
+    JOIN `{TABLE_FACT}` f
+        ON c.customer_id = f.customer_id
+    JOIN `{TABLE_DATES}` d
+        ON f.order_date_key = d.date_key
+    WHERE TRUE {state_filter} {year_filter}
     GROUP BY 1
     """
     df_customers = run_query(sql_customer_locations)
@@ -74,6 +85,11 @@ with tab2:
         ON s.seller_id = ss.seller_id
     JOIN `{TABLE_GEOLOCATION}` g
         ON ss.seller_zip_code_prefix = g.geolocation_zip_code_prefix
+    JOIN `{TABLE_FACT}` f
+        ON s.seller_id = f.seller_id
+    JOIN `{TABLE_DATES}` d
+        ON f.order_date_key = d.date_key
+    WHERE TRUE {year_filter}
     GROUP BY 1
     """
     df_sellers = run_query(sql_seller_locations)
@@ -98,7 +114,8 @@ with tab2:
 with tab3:
     st.header("Delivery Routes")
 
-    state_filter = get_state_filter_sql_clause("t6", selected_states)
+    state_filter = get_state_filter_sql_clause("t6", st.session_state.selected_states)
+    year_filter = get_year_filter_sql_clause("d", st.session_state.selected_years)
     sql_delivery_routes = f"""
     SELECT
         t1.order_id,
@@ -115,7 +132,8 @@ with tab3:
     JOIN `{TABLE_CUSTOMERS}` AS t6 ON t1.customer_id = t6.customer_id
     JOIN `{TABLE_STG_CUSTOMERS}` AS t7 ON t6.customer_id = t7.customer_id
     JOIN `{TABLE_GEOLOCATION}` AS t3 ON t7.customer_zip_code_prefix = t3.geolocation_zip_code_prefix
-    WHERE t1.order_id IS NOT NULL AND t1.price > 0 {state_filter}
+    JOIN `{TABLE_DATES}` AS d ON t1.order_date_key = d.date_key
+    WHERE t1.order_id IS NOT NULL AND t1.price > 0 {state_filter} {year_filter}
     LIMIT 1000
     """
     df_routes = run_query(sql_delivery_routes)
