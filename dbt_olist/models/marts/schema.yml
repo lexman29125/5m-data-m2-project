@@ -57,7 +57,6 @@ models:
           - relationships:
               to: ref('dim_payments')
               field: payment_type_key
-              # Add config to handle the default '-1' value
               config:
                 where: "payment_type_key != '-1'"
       - name: price
@@ -105,12 +104,12 @@ models:
         tests:
           - unique
           - not_null
-      - name: geolocation_id
-        description: "Foreign key to dim_geolocation"
+      - name: geolocation_zip_code_prefix
+        description: "Foreign key to dim_geolocation (ZIP code prefix)"
         tests:
           - relationships:
               to: ref('dim_geolocation')
-              field: geolocation_id
+              field: geolocation_zip_code_prefix
 
   - name: dim_sellers
     description: "Seller dimension with geographic information"
@@ -120,33 +119,37 @@ models:
         tests:
           - unique
           - not_null
-      - name: geolocation_id
-        description: "Foreign key to dim_geolocation"
+      - name: geolocation_zip_code_prefix
+        description: "Foreign key to dim_geolocation (ZIP code prefix)"
         tests:
           - relationships:
               to: ref('dim_geolocation')
-              field: geolocation_id
+              field: geolocation_zip_code_prefix
 
   - name: dim_geolocation
     description: "Geographic dimension for customers and sellers"
     columns:
-      - name: geolocation_id
-        description: "Unique geographic location identifier (Primary Key)"
+      - name: geolocation_zip_code_prefix
+        description: "ZIP code prefix (Primary Key)"
         tests:
           - unique
           - not_null
-      - name: geolocation_zip_code_prefix
-        description: "ZIP code prefix"
       - name: latitude
+        description: "Latitude of the location"
         tests:
           - dbt_expectations.expect_column_values_to_be_between:
               min_value: -90
               max_value: 90
       - name: longitude
+        description: "Longitude of the location"
         tests:
           - dbt_expectations.expect_column_values_to_be_between:
               min_value: -180
               max_value: 180
+      - name: city
+        description: "City name"
+      - name: state
+        description: "State name"
 
   - name: dim_dates
     description: "Date dimension for order analysis"

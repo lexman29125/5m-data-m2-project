@@ -1,0 +1,77 @@
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+from olist_report import run_query, TABLE_CUSTOMERS, TABLE_FACT
+
+# -------------------------
+# Page Content
+# -------------------------
+st.title("Customer Analytics")
+
+# Use tabs to organize content
+tab1, tab2 = st.tabs(["Customer Demographics", "Order Behavior"])
+
+with tab1:
+    st.header("Customer Demographics")
+
+    # Query for unique customers by state
+    sql_customers_by_state = f"""
+    SELECT
+        customer_state,
+        COUNT(DISTINCT customer_unique_id) AS total_customers
+    FROM `{TABLE_CUSTOMERS}`
+    GROUP BY 1
+    ORDER BY total_customers DESC
+    """
+    df_customers_by_state = run_query(sql_customers_by_state)
+
+    if not df_customers_by_state.empty:
+        st.subheader("Total Unique Customers by State")
+        fig_customers = px.bar(df_customers_by_state, x="total_customers", y="customer_state", orientation="h",
+                               labels={"total_customers": "Total Unique Customers", "customer_state": "Customer State"})
+        st.plotly_chart(fig_customers, use_container_width=True)
+    else:
+        st.warning("No data found for customer demographics.")
+
+with tab2:
+    st.header("Customer Order Behavior")
+    
+    # Query for orders per customer
+    sql_orders_per_customer = f"""
+    SELECT
+        c.customer_unique_id,
+        COUNT(DISTINCT f.order_id) AS total_orders
+    FROM `{TABLE_CUSTOMERS}` c
+    JOIN `{TABLE_FACT}` f
+        ON c.customer_id = f.customer_id
+    GROUP BY 1
+    """
+    df_orders_per_customer = run_query(sql_orders_per_customer)
+    
+    if not df_orders_per_customer.empty:
+        st.subheader("Orders Per Customer")
+        fig_orders_dist = px.histogram(df_orders_per_customer, x="total_orders", nbins=20,
+                                       labels={"total_orders": "Number of Orders"})
+        st.plotly_chart(fig_orders_dist, use_container_width=True)
+    else:
+        st.warning("No data found for orders per customer.")
+
+    # Query for average spending per customer
+    sql_avg_spending = f"""
+    SELECT
+        c.customer_unique_id,
+        SUM(SAFE_CAST(f.price AS FLOAT64)) AS total_spent
+    FROM `{TABLE_CUSTOMERS}` c
+    JOIN `{TABLE_FACT}` f
+        ON c.customer_id = f.customer_id
+    GROUP BY 1
+    """
+    df_avg_spending = run_query(sql_avg_spending)
+
+    if not df_avg_spending.empty:
+        st.subheader("Total Spending Per Customer")
+        fig_spending_dist = px.histogram(df_avg_spending, x="total_spent", nbins=50,
+                                         labels={"total_spent": "Total Spending"})
+        st.plotly_chart(fig_spending_dist, use_container_width=True)
+    else:
+        st.warning("No data found for customer spending.")

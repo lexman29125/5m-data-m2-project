@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 select
-    {{ dbt_utils.generate_surrogate_key(['geolocation_zip_code_prefix']) }} as geolocation_id,
+    -- {{ dbt_utils.generate_surrogate_key(['geolocation_zip_code_prefix']) }} as geolocation_id,
     geolocation_zip_code_prefix,
     avg(latitude) as latitude,          -- averages the already averaged values from stg_geolocation
     avg(longitude) as longitude,

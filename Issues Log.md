@@ -266,3 +266,30 @@ dbt deps
 dbt seed
 dbt run --full-refresh
 dbt test
+
+# After ver 2 dbt code merge: dbt run error:
+
+08:20:19  Completed with 2 errors, 0 partial successes, and 0 warnings:
+08:20:19  
+08:20:19    Database Error in model dim_customers (models/marts/dim_customers.sql)
+  Name geolocation_id not found inside g at [20:7]
+  compiled code at target/run/dbt_olist/models/marts/dim_customers.sql
+08:20:19  
+08:20:19    Database Error in model dim_sellers (models/marts/dim_sellers.sql)
+  Name geolocation_id not found inside g at [19:7]
+  compiled code at target/run/dbt_olist/models/marts/dim_sellers.sql
+
+### The errors were:
+	
+Both errors are the same: the query is referencing g.geolocation_id, but the alias g doesn’t contain that column. Usually g is a table alias for dim_geolocation (or a CTE), so either:
+	•	dim_geolocation doesn’t have geolocation_id in the schema, or
+	•	The alias g in your SQL isn’t actually pointing to the table that contains geolocation_id.
+
+### Solution: Update dim_customers.sql, dim_sellers.sql, Dim_geolocation.sql, schema.yml
+
+This means stg_geolocation doesn’t have a column called geolocation_id. Likely it has:
+	•	geolocation_zip_code_prefix
+
+…but not geolocation_id.
+
+Replace in code-> g.geolocation_id → g.geolocation_zip_code_prefix
