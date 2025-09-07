@@ -3,6 +3,8 @@
 SELECT DISTINCT
     s.seller_id,
     s.seller_zip_code_prefix,
+    s.seller_city,
+    s.seller_state,
     g.geolocation_zip_code_prefix,  -- keep original column name
     g.latitude,
     g.longitude,

@@ -1,17 +1,12 @@
-# streamlit/pages/2_Customer_Insights.py
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from olist_report import run_query, TABLE_FACT, TABLE_CUSTOMERS, TABLE_DATES, create_state_filter, get_state_filter_sql_clause
+from olist_report import run_query, TABLE_FACT, TABLE_CUSTOMERS, TABLE_DATES
 
 # -------------------------
 # Page Content
 # -------------------------
 st.title("Customer Insights")
-
-# Create the customer state filter UI
-selected_states = create_state_filter(TABLE_CUSTOMERS)
 
 # Use tabs for different sections of analysis
 tab1, tab2 = st.tabs(["Customer Overview", "Customer Segmentation"])
@@ -19,12 +14,10 @@ tab1, tab2 = st.tabs(["Customer Overview", "Customer Segmentation"])
 with tab1:
     st.header("Overall Customer Metrics")
     
-    # Apply the state filter to this query.
-    state_filter = get_state_filter_sql_clause("c", selected_states)
+    # Query for total unique customers
     sql_total_customers = f"""
-    SELECT COUNT(DISTINCT c.customer_unique_id) AS total_customers
-    FROM `{TABLE_CUSTOMERS}` c
-    WHERE TRUE {state_filter}
+    SELECT COUNT(DISTINCT customer_unique_id) AS total_customers
+    FROM `{TABLE_CUSTOMERS}`
     """
     df_total_customers = run_query(sql_total_customers)
     
@@ -34,8 +27,7 @@ with tab1:
 with tab2:
     st.header("Customer Segmentation (RFM Analysis)")
 
-    # SQL query to get RFM data
-    state_filter = get_state_filter_sql_clause("c", selected_states)
+    # SQL query to get RFM data - CORRECTED
     sql_rfm = f"""
     SELECT
         c.customer_unique_id,
@@ -47,7 +39,6 @@ with tab2:
         ON f.customer_id = c.customer_id
     JOIN `{TABLE_DATES}` d
         ON f.order_date_key = d.date_key
-    WHERE TRUE {state_filter}
     GROUP BY c.customer_unique_id
     """
 

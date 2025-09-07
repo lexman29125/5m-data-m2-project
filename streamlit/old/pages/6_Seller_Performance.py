@@ -1,9 +1,7 @@
-# streamlit/pages/6_Seller_Performance.py
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from olist_report import run_query, TABLE_FACT, TABLE_SELLERS, create_state_filter, get_state_filter_sql_clause, TABLE_CUSTOMERS
+from olist_report import run_query, TABLE_FACT, TABLE_SELLERS
 
 # -------------------------
 # Page Content

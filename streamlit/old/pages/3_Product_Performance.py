@@ -1,17 +1,12 @@
-# streamlit/pages/3_Product_Performance.py
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from olist_report import run_query, TABLE_FACT, TABLE_PRODUCTS, TABLE_DATES, TABLE_CUSTOMERS, create_state_filter, get_state_filter_sql_clause
+from olist_report import run_query, TABLE_FACT, TABLE_PRODUCTS, TABLE_DATES
 
 # -------------------------
 # Page Content
 # -------------------------
 st.title("Product Performance")
-
-# Create the customer state filter UI
-selected_states = create_state_filter(TABLE_CUSTOMERS)
 
 # Use tabs to organize content
 tab1, tab2 = st.tabs(["Sales Trends", "Top Products"])
@@ -19,7 +14,6 @@ tab1, tab2 = st.tabs(["Sales Trends", "Top Products"])
 with tab1:
     st.header("Monthly Sales Trends by Product Category")
 
-    state_filter = get_state_filter_sql_clause("c", selected_states)
     sql_trends = f"""
     SELECT
         FORMAT_DATE('%Y-%m', d.full_date) AS month,
@@ -30,9 +24,6 @@ with tab1:
         ON f.product_id = p.product_id
     JOIN `{TABLE_DATES}` d
         ON f.order_date_key = d.date_key
-    JOIN `{TABLE_CUSTOMERS}` c
-        ON f.customer_id = c.customer_id
-    WHERE TRUE {state_filter}
     GROUP BY 1, 2
     ORDER BY 1, 3 DESC
     """
@@ -50,7 +41,6 @@ with tab2:
     st.header("Top 10 Product Categories")
     
     # Query for top products by revenue
-    state_filter = get_state_filter_sql_clause("c", selected_states)
     sql_top_revenue = f"""
     SELECT
         COALESCE(p.product_category_name_english, 'untranslated') AS product_category,
@@ -58,9 +48,6 @@ with tab2:
     FROM `{TABLE_FACT}` f
     JOIN `{TABLE_PRODUCTS}` p
         ON f.product_id = p.product_id
-    JOIN `{TABLE_CUSTOMERS}` c
-        ON f.customer_id = c.customer_id
-    WHERE TRUE {state_filter}
     GROUP BY 1
     ORDER BY 2 DESC
     LIMIT 10
@@ -68,7 +55,6 @@ with tab2:
     df_top_revenue = run_query(sql_top_revenue)
 
     # Query for top products by units sold
-    state_filter = get_state_filter_sql_clause("c", selected_states)
     sql_top_units = f"""
     SELECT
         COALESCE(p.product_category_name_english, 'untranslated') AS product_category,
@@ -76,9 +62,6 @@ with tab2:
     FROM `{TABLE_FACT}` f
     JOIN `{TABLE_PRODUCTS}` p
         ON f.product_id = p.product_id
-    JOIN `{TABLE_CUSTOMERS}` c
-        ON f.customer_id = c.customer_id
-    WHERE TRUE {state_filter}
     GROUP BY 1
     ORDER BY 2 DESC
     LIMIT 10

@@ -1,17 +1,12 @@
-# streamlit/pages/4_Order_Fulfillment.py
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from olist_report import run_query, TABLE_FACT, TABLE_CUSTOMERS, TABLE_STG_ORDERS, TABLE_DATES, create_state_filter, get_state_filter_sql_clause
+from olist_report import run_query, TABLE_FACT, TABLE_CUSTOMERS, TABLE_STG_ORDERS, TABLE_DATES
 
 # -------------------------
 # Page Content
 # -------------------------
 st.title("Order Fulfillment & Delivery")
-
-# Create the customer state filter UI
-selected_states = create_state_filter(TABLE_CUSTOMERS)
 
 # Use tabs to organize content
 tab1, tab2, tab3 = st.tabs(["Delivery Times", "Performance by Location", "Delivery Rates"])
@@ -19,8 +14,6 @@ tab1, tab2, tab3 = st.tabs(["Delivery Times", "Performance by Location", "Delive
 with tab1:
     st.header("Overall Delivery Time Trend")
 
-    # This query uses the customer state filter.
-    state_filter = get_state_filter_sql_clause("c", selected_states)
     sql_delivery_trend = f"""
     SELECT
         FORMAT_DATE('%Y-%m', d.full_date) AS month,
@@ -28,9 +21,6 @@ with tab1:
     FROM `{TABLE_FACT}` f
     JOIN `{TABLE_DATES}` d
         ON f.order_date_key = d.date_key
-    JOIN `{TABLE_CUSTOMERS}` c
-        ON f.customer_id = c.customer_id
-    WHERE TRUE {state_filter}
     GROUP BY 1
     ORDER BY 1
     """
@@ -47,8 +37,6 @@ with tab1:
 with tab2:
     st.header("Average Delivery Time by Customer State")
 
-    # This query already uses customer state, so we just need to apply the filter.
-    state_filter = get_state_filter_sql_clause("c", selected_states)
     sql_delivery_by_state = f"""
     SELECT
         c.customer_state,
@@ -56,7 +44,6 @@ with tab2:
     FROM `{TABLE_FACT}` f
     JOIN `{TABLE_CUSTOMERS}` c
         ON f.customer_id = c.customer_id
-    WHERE TRUE {state_filter}
     GROUP BY 1
     ORDER BY 2 DESC
     """

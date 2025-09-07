@@ -1,17 +1,12 @@
-# streamlit/pages/8_Customer_Analytics.py
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from olist_report import run_query, TABLE_CUSTOMERS, TABLE_FACT, create_state_filter, get_state_filter_sql_clause
+from olist_report import run_query, TABLE_CUSTOMERS, TABLE_FACT
 
 # -------------------------
 # Page Content
 # -------------------------
 st.title("Customer Analytics")
-
-# Create the customer state filter UI
-selected_states = create_state_filter(TABLE_CUSTOMERS)
 
 # Use tabs to organize content
 tab1, tab2 = st.tabs(["Customer Demographics", "Order Behavior"])
@@ -20,13 +15,11 @@ with tab1:
     st.header("Customer Demographics")
 
     # Query for unique customers by state
-    state_filter = get_state_filter_sql_clause("c", selected_states)
     sql_customers_by_state = f"""
     SELECT
         customer_state,
         COUNT(DISTINCT customer_unique_id) AS total_customers
-    FROM `{TABLE_CUSTOMERS}` c
-    WHERE TRUE {state_filter}
+    FROM `{TABLE_CUSTOMERS}`
     GROUP BY 1
     ORDER BY total_customers DESC
     """
@@ -38,13 +31,12 @@ with tab1:
                                labels={"total_customers": "Total Unique Customers", "customer_state": "Customer State"})
         st.plotly_chart(fig_customers, use_container_width=True)
     else:
-        st.warning("No data found for customer demographics with the current filter selection.")
+        st.warning("No data found for customer demographics.")
 
 with tab2:
     st.header("Customer Order Behavior")
     
     # Query for orders per customer
-    state_filter = get_state_filter_sql_clause("c", selected_states)
     sql_orders_per_customer = f"""
     SELECT
         c.customer_unique_id,
@@ -52,7 +44,6 @@ with tab2:
     FROM `{TABLE_CUSTOMERS}` c
     JOIN `{TABLE_FACT}` f
         ON c.customer_id = f.customer_id
-    WHERE TRUE {state_filter}
     GROUP BY 1
     """
     df_orders_per_customer = run_query(sql_orders_per_customer)
@@ -63,10 +54,9 @@ with tab2:
                                        labels={"total_orders": "Number of Orders"})
         st.plotly_chart(fig_orders_dist, use_container_width=True)
     else:
-        st.warning("No data found for orders per customer with the current filter selection.")
+        st.warning("No data found for orders per customer.")
 
     # Query for average spending per customer
-    state_filter = get_state_filter_sql_clause("c", selected_states)
     sql_avg_spending = f"""
     SELECT
         c.customer_unique_id,
@@ -74,7 +64,6 @@ with tab2:
     FROM `{TABLE_CUSTOMERS}` c
     JOIN `{TABLE_FACT}` f
         ON c.customer_id = f.customer_id
-    WHERE TRUE {state_filter}
     GROUP BY 1
     """
     df_avg_spending = run_query(sql_avg_spending)
@@ -85,4 +74,4 @@ with tab2:
                                          labels={"total_spent": "Total Spending"})
         st.plotly_chart(fig_spending_dist, use_container_width=True)
     else:
-        st.warning("No data found for customer spending with the current filter selection.")
+        st.warning("No data found for customer spending.")
