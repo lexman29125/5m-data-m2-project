@@ -35,3 +35,10 @@ models:
       materialized: view
     marts:
       materialized: table
+      
+  elementary:
+    ## elementary models will be created in the schema '<your_schema>_elementary'
+    +schema: "elementary"
+
+flags:
+  require_explicit_package_overrides_for_builtin_materializations: false
