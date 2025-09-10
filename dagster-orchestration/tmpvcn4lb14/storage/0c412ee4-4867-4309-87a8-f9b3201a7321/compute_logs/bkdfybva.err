@@ -1,0 +1,107 @@
+[32m2025-09-06 11:49:46 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0c412ee4-4867-4309-87a8-f9b3201a7321 - 632457 - LOGS_CAPTURED - Started capturing logs in process (pid: 632457).
+[32m2025-09-06 11:49:46 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0c412ee4-4867-4309-87a8-f9b3201a7321 - 632457 - pipeline_dbt_test - STEP_START - Started execution of step "pipeline_dbt_test".
+[32m2025-09-06 11:50:35 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 0c412ee4-4867-4309-87a8-f9b3201a7321 - 632457 - pipeline_dbt_test - STEP_FAILURE - Execution of step "pipeline_dbt_test" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "pipeline_dbt_test"::
+
+Exception: [0m03:49:47  Running with dbt=1.9.6
+[0m03:49:48  Registered adapter: bigquery=1.9.2
+[0m03:49:48  Found 16 models, 1 seed, 26 data tests, 9 sources, 494 macros
+[0m03:49:48  
+[0m03:49:48  Concurrency: 1 threads (target='dev')
+[0m03:49:48  
+[0m03:49:49  1 of 26 START test not_null_dim_customers_customer_id .......................... [RUN]
+[0m03:49:51  1 of 26 PASS not_null_dim_customers_customer_id ................................ [[32mPASS[0m in 1.71s]
+[0m03:49:51  2 of 26 START test not_null_dim_customers_customer_unique_id ................... [RUN]
+[0m03:49:52  2 of 26 PASS not_null_dim_customers_customer_unique_id ......................... [[32mPASS[0m in 1.70s]
+[0m03:49:52  3 of 26 START test not_null_dim_dates_date_key ................................. [RUN]
+[0m03:49:54  3 of 26 PASS not_null_dim_dates_date_key ....................................... [[32mPASS[0m in 1.76s]
+[0m03:49:54  4 of 26 START test not_null_dim_geolocation_geolocation_zip_code_prefix ........ [RUN]
+[0m03:49:56  4 of 26 PASS not_null_dim_geolocation_geolocation_zip_code_prefix .............. [[32mPASS[0m in 1.64s]
+[0m03:49:56  5 of 26 START test not_null_dim_payments_payment_type_key ...................... [RUN]
+[0m03:49:57  5 of 26 PASS not_null_dim_payments_payment_type_key ............................ [[32mPASS[0m in 1.68s]
+[0m03:49:57  6 of 26 START test not_null_dim_products_product_id ............................ [RUN]
+[0m03:49:59  6 of 26 PASS not_null_dim_products_product_id .................................. [[32mPASS[0m in 1.80s]
+[0m03:49:59  7 of 26 START test not_null_dim_sellers_seller_id .............................. [RUN]
+[0m03:50:01  7 of 26 PASS not_null_dim_sellers_seller_id .................................... [[32mPASS[0m in 1.63s]
+[0m03:50:01  8 of 26 START test not_null_fact_order_items_customer_id ....................... [RUN]
+[0m03:50:02  8 of 26 PASS not_null_fact_order_items_customer_id ............................. [[32mPASS[0m in 1.67s]
+[0m03:50:02  9 of 26 START test not_null_fact_order_items_order_date_key .................... [RUN]
+[0m03:50:04  9 of 26 PASS not_null_fact_order_items_order_date_key .......................... [[32mPASS[0m in 1.54s]
+[0m03:50:04  10 of 26 START test not_null_fact_order_items_order_id ......................... [RUN]
+[0m03:50:06  10 of 26 PASS not_null_fact_order_items_order_id ............................... [[32mPASS[0m in 1.55s]
+[0m03:50:06  11 of 26 START test not_null_fact_order_items_order_item_id .................... [RUN]
+[0m03:50:07  11 of 26 PASS not_null_fact_order_items_order_item_id .......................... [[32mPASS[0m in 1.62s]
+[0m03:50:07  12 of 26 START test not_null_fact_order_items_payment_type_key ................. [RUN]
+[0m03:50:09  12 of 26 PASS not_null_fact_order_items_payment_type_key ....................... [[32mPASS[0m in 1.49s]
+[0m03:50:09  13 of 26 START test not_null_fact_order_items_product_id ....................... [RUN]
+[0m03:50:10  13 of 26 PASS not_null_fact_order_items_product_id ............................. [[32mPASS[0m in 1.68s]
+[0m03:50:10  14 of 26 START test not_null_fact_order_items_seller_id ........................ [RUN]
+[0m03:50:12  14 of 26 PASS not_null_fact_order_items_seller_id .............................. [[32mPASS[0m in 1.55s]
+[0m03:50:12  15 of 26 START test relationships_fact_order_items_customer_id__customer_id__ref_dim_customers_  [RUN]
+[0m03:50:14  15 of 26 PASS relationships_fact_order_items_customer_id__customer_id__ref_dim_customers_  [[32mPASS[0m in 1.78s]
+[0m03:50:14  16 of 26 START test relationships_fact_order_items_order_date_key__date_key__ref_dim_dates_  [RUN]
+[0m03:50:15  16 of 26 PASS relationships_fact_order_items_order_date_key__date_key__ref_dim_dates_  [[32mPASS[0m in 1.66s]
+[0m03:50:15  17 of 26 START test relationships_fact_order_items_payment_type_key__payment_type_key__ref_dim_payments_  [RUN]
+[0m03:50:17  17 of 26 PASS relationships_fact_order_items_payment_type_key__payment_type_key__ref_dim_payments_  [[32mPASS[0m in 1.79s]
+[0m03:50:17  18 of 26 START test relationships_fact_order_items_product_id__product_id__ref_dim_products_  [RUN]
+[0m03:50:19  18 of 26 PASS relationships_fact_order_items_product_id__product_id__ref_dim_products_  [[32mPASS[0m in 1.84s]
+[0m03:50:19  19 of 26 START test relationships_fact_order_items_seller_id__seller_id__ref_dim_sellers_  [RUN]
+[0m03:50:21  19 of 26 PASS relationships_fact_order_items_seller_id__seller_id__ref_dim_sellers_  [[32mPASS[0m in 1.72s]
+[0m03:50:21  20 of 26 START test unique_dim_customers_customer_id ........................... [RUN]
+[0m03:50:22  20 of 26 PASS unique_dim_customers_customer_id ................................. [[32mPASS[0m in 1.80s]
+[0m03:50:22  21 of 26 START test unique_dim_dates_date_key .................................. [RUN]
+[0m03:50:24  21 of 26 PASS unique_dim_dates_date_key ........................................ [[32mPASS[0m in 1.83s]
+[0m03:50:24  22 of 26 START test unique_dim_geolocation_geolocation_zip_code_prefix ......... [RUN]
+[0m03:50:26  22 of 26 PASS unique_dim_geolocation_geolocation_zip_code_prefix ............... [[32mPASS[0m in 1.85s]
+[0m03:50:26  23 of 26 START test unique_dim_payments_payment_type_key ....................... [RUN]
+[0m03:50:28  23 of 26 PASS unique_dim_payments_payment_type_key ............................. [[32mPASS[0m in 1.74s]
+[0m03:50:28  24 of 26 START test unique_dim_products_product_id ............................. [RUN]
+[0m03:50:30  24 of 26 FAIL 32951 unique_dim_products_product_id ............................. [[31mFAIL 32951[0m in 1.96s]
+[0m03:50:30  25 of 26 START test unique_dim_sellers_seller_id ............................... [RUN]
+[0m03:50:31  25 of 26 PASS unique_dim_sellers_seller_id ..................................... [[32mPASS[0m in 1.59s]
+[0m03:50:31  26 of 26 START test unique_fact_order_items_order_item_id ...................... [RUN]
+[0m03:50:33  26 of 26 PASS unique_fact_order_items_order_item_id ............................ [[32mPASS[0m in 1.61s]
+[0m03:50:33  
+[0m03:50:33  Finished running 26 data tests in 0 hours 0 minutes and 44.69 seconds (44.69s).
+[0m03:50:33  
+[0m03:50:33  [31mCompleted with 1 error, 0 partial successes, and 0 warnings:[0m
+[0m03:50:33  
+[0m03:50:33  [31mFailure in test unique_dim_products_product_id (models/marts/schema.yml)[0m
+[0m03:50:33    Got 32951 results, configured to fail if != 0
+[0m03:50:33  
+[0m03:50:33    compiled code at target/compiled/dbt_olist/models/marts/schema.yml/unique_dim_products_product_id.sql
+[0m03:50:33  
+[0m03:50:33  Done. PASS=25 WARN=0 ERROR=1 SKIP=0 TOTAL=26
+
+
+Stack Trace:
+  File "/home/alvin/miniconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/execution/plan/utils.py", line 56, in op_execution_error_boundary
+    yield
+  File "/home/alvin/miniconda3/envs/dagster/lib/python3.11/site-packages/dagster/_utils/__init__.py", line 480, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/home/alvin/miniconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/execution/plan/compute_generator.py", line 127, in _coerce_op_compute_fn_to_iterator
+    result = invoke_compute_fn(
+             ^^^^^^^^^^^^^^^^^^
+  File "/home/alvin/miniconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/execution/plan/compute_generator.py", line 115, in invoke_compute_fn
+    return fn(context, **args_to_pass) if context_arg_provided else fn(**args_to_pass)
+                                                                    ^^^^^^^^^^^^^^^^^^
+  File "/home/alvin/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/dbtpipeline.py", line 31, in pipeline_dbt_test
+    run_dbt_command(["dbt", "test", "--project-dir", DBT_PROJECT_DIR])
+  File "/home/alvin/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/dbtpipeline.py", line 16, in run_dbt_command
+    raise Exception(e.output.decode())
+
+The above exception occurred during handling of the following exception:
+subprocess.CalledProcessError: Command '['dbt', 'test', '--project-dir', '/home/alvin/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/../../../dbt_olist', '--profiles-dir', '/home/alvin/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/../../../dbt_olist']' returned non-zero exit status 1.
+
+Stack Trace:
+  File "/home/alvin/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/dbtpipeline.py", line 13, in run_dbt_command
+    output = subprocess.check_output(full_cmd, stderr=subprocess.STDOUT).decode()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alvin/miniconda3/envs/dagster/lib/python3.11/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alvin/miniconda3/envs/dagster/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+[0m

@@ -1,0 +1,30 @@
+[32m2025-09-10 00:35:07 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4e6d1cd2-cf7d-4721-befa-250f8ea169eb - 211013 - LOGS_CAPTURED - Started capturing logs in process (pid: 211013).
+[32m2025-09-10 00:35:07 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4e6d1cd2-cf7d-4721-befa-250f8ea169eb - 211013 - pipeline_dbt_seed - STEP_START - Started execution of step "pipeline_dbt_seed".
+[32m2025-09-10 00:35:07 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 4e6d1cd2-cf7d-4721-befa-250f8ea169eb - pipeline_dbt_seed - Running dbt command: dbt seed --project-dir /home/alvin/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/../../../dbt_olist --profiles-dir /home/alvin/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/../../../dbt_olist
+[32m2025-09-10 00:35:25 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 4e6d1cd2-cf7d-4721-befa-250f8ea169eb - pipeline_dbt_seed - [0m16:35:08  Running with dbt=1.9.6
+[0m16:35:10  Registered adapter: bigquery=1.9.2
+[0m16:35:10  Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m16:35:13  [[33mWARNING[0m]: Test 'test.dbt_olist.relationships_fact_order_items_order_date_key__date_key__ref_dim_orders_.c28d78fc6f' (models/marts/schema.yml) depends on a node named 'dim_orders' in package '' which was not found
+[0m16:35:13  Found 46 models, 1 seed, 2 operations, 63 data tests, 9 sources, 1678 macros
+[0m16:35:13  
+[0m16:35:13  Concurrency: 1 threads (target='dev')
+[0m16:35:13  
+[0m16:35:15  Elementary: Runtime data: {"config": {}, "dbt_version": "1.9.6", "elementary_version": "0.19.4", "database": "celtic-iridium-468311-d6", "schema": "m2_prod_elementary"}
+[0m16:35:15  1 of 1 START hook: elementary.on-run-start.0 ................................... [RUN]
+[0m16:35:15  1 of 1 OK hook: elementary.on-run-start.0 ...................................... [[32mOK[0m in 0.03s]
+[0m16:35:15  
+[0m16:35:15  1 of 1 START seed file m2_prod.product_category_name_translation ............... [RUN]
+[0m16:35:23  1 of 1 OK loaded seed file m2_prod.product_category_name_translation ........... [[32mINSERT 71[0m in 7.14s]
+[0m16:35:23  
+[0m16:35:23  1 of 1 START hook: elementary.on-run-end.0 ..................................... [RUN]
+[0m16:35:23  1 of 1 OK hook: elementary.on-run-end.0 ........................................ [[32mOK[0m in 0.03s]
+[0m16:35:23  
+[0m16:35:23  Finished running 2 project hooks, 1 seed in 0 hours 0 minutes and 9.49 seconds (9.49s).
+[0m16:35:23  
+[0m16:35:23  [32mCompleted successfully[0m
+[0m16:35:23  
+[0m16:35:23  Done. PASS=3 WARN=0 ERROR=0 SKIP=0 TOTAL=3
+
+[32m2025-09-10 00:35:25 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4e6d1cd2-cf7d-4721-befa-250f8ea169eb - 211013 - pipeline_dbt_seed - STEP_OUTPUT - Yielded output "result" of type "Nothing". (Type check passed).
+[32m2025-09-10 00:35:25 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4e6d1cd2-cf7d-4721-befa-250f8ea169eb - 211013 - pipeline_dbt_seed - ASSET_MATERIALIZATION - Materialized value pipeline_dbt_seed.
+[32m2025-09-10 00:35:25 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 4e6d1cd2-cf7d-4721-befa-250f8ea169eb - 211013 - pipeline_dbt_seed - STEP_SUCCESS - Finished execution of step "pipeline_dbt_seed" in 17.72s.

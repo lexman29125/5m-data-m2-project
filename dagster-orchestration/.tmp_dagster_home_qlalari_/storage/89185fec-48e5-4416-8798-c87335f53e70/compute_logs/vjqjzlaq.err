@@ -1,0 +1,24 @@
+[32m2025-09-10 23:05:21 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 89185fec-48e5-4416-8798-c87335f53e70 - 236552 - LOGS_CAPTURED - Started capturing logs in process (pid: 236552).
+[32m2025-09-10 23:05:21 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 89185fec-48e5-4416-8798-c87335f53e70 - 236552 - ingestion - STEP_START - Started execution of step "ingestion".
+[32m2025-09-10 23:05:21 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 89185fec-48e5-4416-8798-c87335f53e70 - 236552 - ingestion - STEP_FAILURE - Execution of step "ingestion" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "ingestion"::
+
+Exception: Script failed: python: can't open file '/home/alvin/5m-data-m2-project/scripts/ingest.py': [Errno 2] No such file or directory
+
+
+Stack Trace:
+  File "/home/ser/miniconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/execution/plan/utils.py", line 57, in op_execution_error_boundary
+    yield
+  File "/home/ser/miniconda3/envs/dagster/lib/python3.11/site-packages/dagster/_utils/__init__.py", line 392, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/home/ser/miniconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/execution/plan/compute_generator.py", line 137, in _coerce_op_compute_fn_to_iterator
+    result = invoke_compute_fn(
+             ^^^^^^^^^^^^^^^^^^
+  File "/home/ser/miniconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/execution/plan/compute_generator.py", line 117, in invoke_compute_fn
+    return fn(context, **args_to_pass) if context_arg_provided else fn(**args_to_pass)
+                                                                    ^^^^^^^^^^^^^^^^^^
+  File "/home/ser/DSAI/5m-data-m2-project-2/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/ingestion_pipeline.py", line 11, in ingestion
+    raise Exception(f"Script failed: {result.stderr}")
+[0m

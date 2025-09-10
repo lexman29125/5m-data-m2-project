@@ -1,0 +1,118 @@
+[32m2025-09-10 22:55:54 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - e3e30ca2-7782-4853-8005-a17960a43fec - 172731 - LOGS_CAPTURED - Started capturing logs in process (pid: 172731).
+[32m2025-09-10 22:55:54 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - e3e30ca2-7782-4853-8005-a17960a43fec - 172731 - pipeline_dbt_run - STEP_START - Started execution of step "pipeline_dbt_run".
+[32m2025-09-10 22:55:54 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - e3e30ca2-7782-4853-8005-a17960a43fec - pipeline_dbt_run - Running dbt command: dbt run --project-dir /home/ser/DSAI/5m-data-m2-project-2/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/../../../dbt_olist --profiles-dir /home/ser/DSAI/5m-data-m2-project-2/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/../../../dbt_olist
+[32m2025-09-10 22:57:04 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - e3e30ca2-7782-4853-8005-a17960a43fec - pipeline_dbt_run - [0m14:55:56  Running with dbt=1.9.6
+[0m14:55:59  Registered adapter: bigquery=1.9.2
+[0m14:56:00  Found 46 models, 1 seed, 2 operations, 63 data tests, 9 sources, 1678 macros
+[0m14:56:00  
+[0m14:56:00  Concurrency: 4 threads (target='dev')
+[0m14:56:00  
+[0m14:56:01  Elementary: Runtime data: {"config": {}, "dbt_version": "1.9.6", "elementary_version": "0.19.4", "database": "calm-analogy-468216-e0", "schema": "m2_prod_elementary"}
+[0m14:56:01  1 of 1 START hook: elementary.on-run-start.0 ................................... [RUN]
+[0m14:56:01  1 of 1 OK hook: elementary.on-run-start.0 ...................................... [[32mOK[0m in 0.06s]
+[0m14:56:01  
+[0m14:56:01  1 of 46 START sql view model m2_prod.stg_customers ............................. [RUN]
+[0m14:56:01  2 of 46 START sql view model m2_prod.stg_geolocation ........................... [RUN]
+[0m14:56:01  3 of 46 START sql view model m2_prod.stg_order_items ........................... [RUN]
+[0m14:56:01  4 of 46 START sql view model m2_prod.stg_order_payments ........................ [RUN]
+[0m14:56:03  1 of 46 OK created sql view model m2_prod.stg_customers ........................ [[32mCREATE VIEW (0 processed)[0m in 1.52s]
+[0m14:56:03  5 of 46 START sql view model m2_prod.stg_order_reviews ......................... [RUN]
+[0m14:56:03  2 of 46 OK created sql view model m2_prod.stg_geolocation ...................... [[32mCREATE VIEW (0 processed)[0m in 1.53s]
+[0m14:56:03  6 of 46 START sql view model m2_prod.stg_orders ................................ [RUN]
+[0m14:56:03  3 of 46 OK created sql view model m2_prod.stg_order_items ...................... [[32mCREATE VIEW (0 processed)[0m in 1.56s]
+[0m14:56:03  4 of 46 OK created sql view model m2_prod.stg_order_payments ................... [[32mCREATE VIEW (0 processed)[0m in 1.56s]
+[0m14:56:03  7 of 46 START sql view model m2_prod.stg_product_category_name_translation ..... [RUN]
+[0m14:56:03  8 of 46 START sql view model m2_prod.stg_products .............................. [RUN]
+[0m14:56:04  5 of 46 OK created sql view model m2_prod.stg_order_reviews .................... [[32mCREATE VIEW (0 processed)[0m in 1.42s]
+[0m14:56:04  9 of 46 START sql view model m2_prod.stg_sellers ............................... [RUN]
+[0m14:56:04  7 of 46 OK created sql view model m2_prod.stg_product_category_name_translation  [[32mCREATE VIEW (0 processed)[0m in 1.34s]
+[0m14:56:04  10 of 46 START sql incremental model m2_prod_elementary.data_monitoring_metrics  [RUN]
+[0m14:56:04  8 of 46 OK created sql view model m2_prod.stg_products ......................... [[32mCREATE VIEW (0 processed)[0m in 1.38s]
+[0m14:56:04  6 of 46 OK created sql view model m2_prod.stg_orders ........................... [[32mCREATE VIEW (0 processed)[0m in 1.50s]
+[0m14:56:04  11 of 46 START sql incremental model m2_prod_elementary.dbt_columns ............ [RUN]
+[0m14:56:04  12 of 46 START sql incremental model m2_prod_elementary.dbt_exposures .......... [RUN]
+[0m14:56:06  9 of 46 OK created sql view model m2_prod.stg_sellers .......................... [[32mCREATE VIEW (0 processed)[0m in 1.42s]
+[0m14:56:06  13 of 46 START sql incremental model m2_prod_elementary.dbt_groups ............. [RUN]
+[0m14:56:12  10 of 46 OK created sql incremental model m2_prod_elementary.data_monitoring_metrics  [[32mMERGE (0.0 rows, 0 processed)[0m in 7.32s]
+[0m14:56:12  14 of 46 START sql incremental model m2_prod_elementary.dbt_invocations ........ [RUN]
+[0m14:56:13  11 of 46 OK created sql incremental model m2_prod_elementary.dbt_columns ....... [[32mMERGE (0.0 rows, 26.3 KiB processed)[0m in 9.05s]
+[0m14:56:13  15 of 46 START sql incremental model m2_prod_elementary.dbt_metrics ............ [RUN]
+[0m14:56:14  12 of 46 OK created sql incremental model m2_prod_elementary.dbt_exposures ..... [[32mMERGE (0.0 rows, 0 processed)[0m in 9.57s]
+[0m14:56:14  16 of 46 START sql incremental model m2_prod_elementary.dbt_models ............. [RUN]
+[0m14:56:15  13 of 46 OK created sql incremental model m2_prod_elementary.dbt_groups ........ [[32mMERGE (0.0 rows, 0 processed)[0m in 9.87s]
+[0m14:56:15  17 of 46 START sql incremental model m2_prod_elementary.dbt_run_results ........ [RUN]
+[0m14:56:18  14 of 46 OK created sql incremental model m2_prod_elementary.dbt_invocations ... [[32mMERGE (0.0 rows, 7.6 KiB processed)[0m in 6.89s]
+[0m14:56:18  18 of 46 START sql incremental model m2_prod_elementary.dbt_seeds .............. [RUN]
+[0m14:56:22  15 of 46 OK created sql incremental model m2_prod_elementary.dbt_metrics ....... [[32mMERGE (0.0 rows, 0 processed)[0m in 8.66s]
+[0m14:56:22  19 of 46 START sql incremental model m2_prod_elementary.dbt_snapshots .......... [RUN]
+[0m14:56:22  17 of 46 OK created sql incremental model m2_prod_elementary.dbt_run_results ... [[32mMERGE (0.0 rows, 2.2 MiB processed)[0m in 6.79s]
+[0m14:56:22  20 of 46 START sql incremental model m2_prod_elementary.dbt_source_freshness_results  [RUN]
+[0m14:56:22  16 of 46 OK created sql incremental model m2_prod_elementary.dbt_models ........ [[32mMERGE (0.0 rows, 30.1 KiB processed)[0m in 8.56s]
+[0m14:56:22  21 of 46 START sql incremental model m2_prod_elementary.dbt_sources ............ [RUN]
+[0m14:56:26  18 of 46 OK created sql incremental model m2_prod_elementary.dbt_seeds ......... [[32mMERGE (0.0 rows, 383.0 Bytes processed)[0m in 7.81s]
+[0m14:56:26  22 of 46 START sql incremental model m2_prod_elementary.dbt_tests .............. [RUN]
+[0m14:56:29  20 of 46 OK created sql incremental model m2_prod_elementary.dbt_source_freshness_results  [[32mMERGE (0.0 rows, 0 processed)[0m in 6.87s]
+[0m14:56:29  23 of 46 START sql incremental model m2_prod_elementary.elementary_test_results  [RUN]
+[0m14:56:30  19 of 46 OK created sql incremental model m2_prod_elementary.dbt_snapshots ..... [[32mMERGE (0.0 rows, 0 processed)[0m in 8.22s]
+[0m14:56:30  24 of 46 START sql table model m2_prod_elementary.metadata ..................... [RUN]
+[0m14:56:31  21 of 46 OK created sql incremental model m2_prod_elementary.dbt_sources ....... [[32mMERGE (0.0 rows, 4.4 KiB processed)[0m in 8.43s]
+[0m14:56:31  25 of 46 START sql incremental model m2_prod_elementary.schema_columns_snapshot  [RUN]
+[0m14:56:34  24 of 46 OK created sql table model m2_prod_elementary.metadata ................ [[32mCREATE TABLE (1.0 rows, 0 processed)[0m in 3.44s]
+[0m14:56:34  26 of 46 START sql table model m2_prod.dim_geolocation ......................... [RUN]
+[0m14:56:37  23 of 46 OK created sql incremental model m2_prod_elementary.elementary_test_results  [[32mMERGE (0.0 rows, 1022.5 KiB processed)[0m in 7.00s]
+[0m14:56:37  22 of 46 OK created sql incremental model m2_prod_elementary.dbt_tests ......... [[32mMERGE (0.0 rows, 49.2 KiB processed)[0m in 9.20s]
+[0m14:56:37  27 of 46 START sql table model m2_prod.dim_payments ............................ [RUN]
+[0m14:56:37  28 of 46 START sql table model m2_prod.dim_products ............................ [RUN]
+[0m14:56:38  26 of 46 OK created sql table model m2_prod.dim_geolocation .................... [[32mCREATE TABLE (19.0k rows, 61.3 MiB processed)[0m in 3.98s]
+[0m14:56:38  29 of 46 START sql table model m2_prod.dim_dates ............................... [RUN]
+[0m14:56:38  25 of 46 OK created sql incremental model m2_prod_elementary.schema_columns_snapshot  [[32mMERGE (0.0 rows, 0 processed)[0m in 7.23s]
+[0m14:56:38  30 of 46 START sql incremental model m2_prod.fact_order_items .................. [RUN]
+[0m14:56:40  27 of 46 OK created sql table model m2_prod.dim_payments ....................... [[32mCREATE TABLE (6.0 rows, 9.7 MiB processed)[0m in 3.60s]
+[0m14:56:40  31 of 46 START sql view model m2_prod_elementary.metrics_anomaly_score ......... [RUN]
+[0m14:56:41  28 of 46 OK created sql table model m2_prod.dim_products ....................... [[32mCREATE TABLE (33.0k rows, 4.3 MiB processed)[0m in 4.38s]
+[0m14:56:41  32 of 46 START sql view model m2_prod_elementary.monitors_runs ................. [RUN]
+[0m14:56:42  29 of 46 OK created sql table model m2_prod.dim_dates .......................... [[32mCREATE TABLE (616.0 rows, 18.4 MiB processed)[0m in 3.87s]
+[0m14:56:42  33 of 46 START sql view model m2_prod_elementary.job_run_results ............... [RUN]
+[0m14:56:42  31 of 46 OK created sql view model m2_prod_elementary.metrics_anomaly_score .... [[32mCREATE VIEW (0 processed)[0m in 1.52s]
+[0m14:56:42  34 of 46 START sql view model m2_prod_elementary.model_run_results ............. [RUN]
+[0m14:56:43  32 of 46 OK created sql view model m2_prod_elementary.monitors_runs ............ [[32mCREATE VIEW (0 processed)[0m in 1.49s]
+[0m14:56:43  30 of 46 OK created sql incremental model m2_prod.fact_order_items ............. [[32mMERGE (0.0 rows, 92.1 MiB processed)[0m in 4.62s]
+[0m14:56:43  35 of 46 START sql view model m2_prod_elementary.seed_run_results .............. [RUN]
+[0m14:56:43  36 of 46 START sql view model m2_prod_elementary.snapshot_run_results .......... [RUN]
+[0m14:56:43  33 of 46 OK created sql view model m2_prod_elementary.job_run_results .......... [[32mCREATE VIEW (0 processed)[0m in 1.79s]
+[0m14:56:43  37 of 46 START sql view model m2_prod_elementary.alerts_dbt_source_freshness ... [RUN]
+[0m14:56:44  34 of 46 OK created sql view model m2_prod_elementary.model_run_results ........ [[32mCREATE VIEW (0 processed)[0m in 1.98s]
+[0m14:56:44  38 of 46 START sql view model m2_prod_elementary.alerts_anomaly_detection ...... [RUN]
+[0m14:56:44  36 of 46 OK created sql view model m2_prod_elementary.snapshot_run_results ..... [[32mCREATE VIEW (0 processed)[0m in 1.54s]
+[0m14:56:44  39 of 46 START sql view model m2_prod_elementary.alerts_dbt_tests .............. [RUN]
+[0m14:56:45  37 of 46 OK created sql view model m2_prod_elementary.alerts_dbt_source_freshness  [[32mCREATE VIEW (0 processed)[0m in 1.81s]
+[0m14:56:45  40 of 46 START sql view model m2_prod_elementary.alerts_schema_changes ......... [RUN]
+[0m14:56:45  35 of 46 OK created sql view model m2_prod_elementary.seed_run_results ......... [[32mCREATE VIEW (0 processed)[0m in 2.58s]
+[0m14:56:45  41 of 46 START sql incremental model m2_prod_elementary.test_result_rows ....... [RUN]
+[0m14:56:45  38 of 46 OK created sql view model m2_prod_elementary.alerts_anomaly_detection . [[32mCREATE VIEW (0 processed)[0m in 1.52s]
+[0m14:56:46  42 of 46 START sql view model m2_prod_elementary.dbt_artifacts_hashes .......... [RUN]
+[0m14:56:46  39 of 46 OK created sql view model m2_prod_elementary.alerts_dbt_tests ......... [[32mCREATE VIEW (0 processed)[0m in 1.26s]
+[0m14:56:46  43 of 46 START sql table model m2_prod.dim_customers ........................... [RUN]
+[0m14:56:47  40 of 46 OK created sql view model m2_prod_elementary.alerts_schema_changes .... [[32mCREATE VIEW (0 processed)[0m in 1.51s]
+[0m14:56:47  44 of 46 START sql table model m2_prod.dim_sellers ............................. [RUN]
+[0m14:56:47  42 of 46 OK created sql view model m2_prod_elementary.dbt_artifacts_hashes ..... [[32mCREATE VIEW (0 processed)[0m in 1.42s]
+[0m14:56:47  45 of 46 START sql view model m2_prod_elementary.anomaly_threshold_sensitivity . [RUN]
+[0m14:56:48  45 of 46 OK created sql view model m2_prod_elementary.anomaly_threshold_sensitivity  [[32mCREATE VIEW (0 processed)[0m in 1.50s]
+[0m14:56:48  46 of 46 START sql view model m2_prod_elementary.alerts_dbt_models ............. [RUN]
+[0m14:56:50  43 of 46 OK created sql table model m2_prod.dim_customers ...................... [[32mCREATE TABLE (99.4k rows, 9.1 MiB processed)[0m in 4.38s]
+[0m14:56:50  46 of 46 OK created sql view model m2_prod_elementary.alerts_dbt_models ........ [[32mCREATE VIEW (0 processed)[0m in 1.77s]
+[0m14:56:51  44 of 46 OK created sql table model m2_prod.dim_sellers ........................ [[32mCREATE TABLE (3.1k rows, 772.7 KiB processed)[0m in 3.85s]
+[0m14:56:53  41 of 46 OK created sql incremental model m2_prod_elementary.test_result_rows .. [[32mMERGE (0.0 rows, 38.7 KiB processed)[0m in 7.54s]
+[0m14:56:53  
+[0m14:57:02  1 of 1 START hook: elementary.on-run-end.0 ..................................... [RUN]
+[0m14:57:02  1 of 1 OK hook: elementary.on-run-end.0 ........................................ [[32mOK[0m in 9.00s]
+[0m14:57:02  
+[0m14:57:02  Finished running 17 incremental models, 2 project hooks, 7 table models, 22 view models in 0 hours 1 minutes and 2.01 seconds (62.01s).
+[0m14:57:02  
+[0m14:57:02  [32mCompleted successfully[0m
+[0m14:57:02  
+[0m14:57:02  Done. PASS=48 WARN=0 ERROR=0 SKIP=0 TOTAL=48
+
+[32m2025-09-10 22:57:04 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - e3e30ca2-7782-4853-8005-a17960a43fec - 172731 - pipeline_dbt_run - STEP_OUTPUT - Yielded output "result" of type "Nothing". (Type check passed).
+[32m2025-09-10 22:57:05 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - e3e30ca2-7782-4853-8005-a17960a43fec - 172731 - pipeline_dbt_run - ASSET_MATERIALIZATION - Materialized value pipeline_dbt_run.
+[32m2025-09-10 22:57:05 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - e3e30ca2-7782-4853-8005-a17960a43fec - 172731 - pipeline_dbt_run - STEP_SUCCESS - Finished execution of step "pipeline_dbt_run" in 1m10s.
