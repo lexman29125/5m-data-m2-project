@@ -5,31 +5,47 @@ import pandas as pd
 import plotly.express as px
 import os
 import plotly.graph_objects as go
-from olist_report import run_query, TABLE_FACT, TABLE_CUSTOMERS, TABLE_SELLERS, TABLE_GEOLOCATION, TABLE_STG_CUSTOMERS, TABLE_STG_SELLERS, haversine, create_state_filter, get_state_filter_sql_clause, create_year_filter, get_year_filter_sql_clause, TABLE_DATES
+import requests
+
+from olist_report import (
+    run_query, TABLE_FACT, TABLE_CUSTOMERS, TABLE_SELLERS, TABLE_GEOLOCATION,
+    TABLE_STG_CUSTOMERS, TABLE_STG_SELLERS, haversine,
+    create_state_filter, get_state_filter_sql_clause,
+    create_year_filter, get_year_filter_sql_clause,
+    TABLE_DATES, TABLE_STG_ORDERS
+)
 
 # -------------------------
 # Page Content
 # -------------------------
 st.title("Geospatial Analytics")
 
-# Create the customer state filter UI
+# Create filters
 selected_states = create_state_filter(TABLE_CUSTOMERS)
 selected_years = create_year_filter(TABLE_DATES)
 st.session_state.selected_states = selected_states
 st.session_state.selected_years = selected_years
 
-# Use tabs to organize content
-tab1, tab2, tab3 = st.tabs(["Sales Heatmap", "Seller vs. Customer Locations", "Delivery Routes"])
+# Tabs
+tab1, tab2, tab3, tab4 = st.tabs([
+    "State Spending Heatmap",
+    "Customer Spending Locations",
+    "Seller vs. Customer Locations",
+    "Delivery Routes"
+])
 
+# -------------------------
+# TAB 1 - State Spending Heatmap
+# -------------------------
 with tab1:
-    st.header("Revenue by State")
-
+    st.header("State Spending Distribution")
+    
     state_filter = get_state_filter_sql_clause("c", st.session_state.selected_states)
     year_filter = get_year_filter_sql_clause("d", st.session_state.selected_years)
-    sql_sales_by_state = f"""
+    sql_state_spending = f"""
     SELECT
         c.customer_state,
-        SUM(SAFE_CAST(f.price AS FLOAT64)) AS total_revenue
+        SUM(SAFE_CAST(f.price AS FLOAT64)) AS total_spent
     FROM `{TABLE_FACT}` f
     JOIN `{TABLE_CUSTOMERS}` c
         ON f.customer_id = c.customer_id
@@ -37,22 +53,115 @@ with tab1:
         ON f.order_date_key = d.date_key
     WHERE TRUE {state_filter} {year_filter}
     GROUP BY 1
-    ORDER BY 2 DESC
     """
-    df_sales_by_state = run_query(sql_sales_by_state)
+    df_state_spending = run_query(sql_state_spending)
 
-    if not df_sales_by_state.empty:
-        st.subheader("Total Revenue by State")
-        fig_state = px.bar(df_sales_by_state, x="total_revenue", y="customer_state", orientation="h",
-                           labels={"total_revenue": "Total Revenue", "customer_state": "Customer State"})
-        st.plotly_chart(fig_state, use_container_width=True)
+    if not df_state_spending.empty:
+        df_state_spending['customer_state'] = df_state_spending['customer_state'].str.upper()
+
+        # Load Brazil states geojson
+        geojson_url = "https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/brazil-states.geojson"
+        response = requests.get(geojson_url)
+        geojson = response.json() if response.status_code == 200 else None
+
+        if geojson:
+            # Custom color scale: transparent for 0, then a darker red for low values
+            # and smoothly transitioning to a darker red for high values.
+            custom_colorscale = [
+                [0.0, "rgba(0,0,0,0)"], # transparent
+                [0.001, "rgb(252,146,114)"], # A distinct red for the lowest non-zero values
+                [0.2, "rgb(251,106,74)"],
+                [0.4, "rgb(239,59,44)"],
+                [0.6, "rgb(203,24,29)"],
+                [1.0, "rgb(165,15,21)"]   # Darkest red
+            ]
+
+            # Format the total_spent column with commas and a dollar sign for the hover text
+            df_state_spending['total_spent_formatted'] = df_state_spending['total_spent'].apply(lambda x: f"${x:,.2f}")
+            
+            fig_map = go.Figure(go.Choroplethmapbox(
+                geojson=geojson,
+                locations=df_state_spending['customer_state'],
+                z=df_state_spending['total_spent'],
+                colorscale=custom_colorscale,
+                zmin=0,
+                zmax=df_state_spending['total_spent'].max(),
+                marker_opacity=0.6,
+                marker_line_width=0.5,
+                featureidkey="properties.sigla",
+                # Use the new formatted column for the hover text
+                hovertext=df_state_spending['customer_state'] + ': ' + df_state_spending['total_spent_formatted'],
+                hoverinfo='text',
+                colorbar=dict(title="Total Spending")
+            ))
+            fig_map.update_layout(
+                mapbox_style="open-street-map",
+                mapbox_zoom=3,
+                mapbox_center = {"lat": -14.2350, "lon": -51.9253},
+                margin={"r":0,"t":0,"l":0,"b":0},
+                title="Total Spending by State (Transparent Overlay)"
+            )
+            st.plotly_chart(fig_map, use_container_width=True)
+        else:
+            st.error("Failed to load Brazil states geojson file.")
     else:
-        st.warning("No data found for sales by state with the current filter selection.")
+        st.warning("No data found for state spending with the current filter selection.")
 
+
+# -------------------------
+# TAB 2 - Customer Spending Locations
+# -------------------------
 with tab2:
+    st.header("Customer Spending Distribution")
+
+    state_filter = get_state_filter_sql_clause("c", st.session_state.selected_states)
+    year_filter = get_year_filter_sql_clause("d", st.session_state.selected_years)
+    sql_customer_locations = f"""
+    SELECT
+        c.customer_unique_id,
+        AVG(g.latitude) as lat,
+        AVG(g.longitude) as lon,
+        SUM(SAFE_CAST(f.price AS FLOAT64)) AS total_spent
+    FROM `{TABLE_CUSTOMERS}` c
+    JOIN `{TABLE_STG_CUSTOMERS}` sc
+        ON c.customer_id = sc.customer_id
+    JOIN `{TABLE_GEOLOCATION}` g
+        ON sc.customer_zip_code_prefix = g.geolocation_zip_code_prefix
+    JOIN `{TABLE_FACT}` f
+        ON c.customer_id = f.customer_id
+    JOIN `{TABLE_DATES}` d
+        ON f.order_date_key = d.date_key
+    WHERE TRUE {state_filter} {year_filter}
+    GROUP BY 1
+    """
+    df_customers = run_query(sql_customer_locations)
+    
+    if not df_customers.empty:
+        st.subheader("Customer Locations by Total Spending")
+        fig_cust_loc = px.scatter_mapbox(
+            df_customers,
+            lat="lat",
+            lon="lon",
+            size="total_spent",
+            size_max=15,
+            hover_name="customer_unique_id",
+            hover_data={"total_spent": ':.2f'},
+            color_continuous_scale=px.colors.sequential.Viridis,
+            zoom=3,
+            height=500
+        )
+        fig_cust_loc.update_layout(mapbox_style="carto-positron")
+        st.plotly_chart(fig_cust_loc, use_container_width=True)
+    else:
+        st.warning("No data found for customer locations with the current filter selection.")
+
+
+# -------------------------
+# TAB 3 - Seller vs Customer Locations
+# -------------------------
+with tab3:
     st.header("Geographic Distribution")
 
-    # Corrected query for customer locations
     state_filter = get_state_filter_sql_clause("c", st.session_state.selected_states)
     year_filter = get_year_filter_sql_clause("d", st.session_state.selected_years)
     sql_customer_locations = f"""
@@ -73,8 +182,7 @@ with tab2:
     GROUP BY 1
     """
     df_customers = run_query(sql_customer_locations)
-    
-    # Corrected query for seller locations
+
     sql_seller_locations = f"""
     SELECT
         s.seller_id,
@@ -99,19 +207,26 @@ with tab2:
         df_sellers['type'] = 'Seller'
         df_map_data = pd.concat([df_customers, df_sellers], ignore_index=True)
 
-        fig_map = px.scatter_mapbox(df_map_data, lat="lat", lon="lon",
-                                    color="type",
-                                    zoom=3, height=500,
-                                    labels={"type": "Location Type"},
-                                    category_orders={"type": ["Customer", "Seller"]})
-        
+        fig_map = px.scatter_mapbox(
+            df_map_data,
+            lat="lat",
+            lon="lon",
+            color="type",
+            zoom=3,
+            height=500,
+            labels={"type": "Location Type"},
+            category_orders={"type": ["Customer", "Seller"]}
+        )
         fig_map.update_layout(mapbox_style="open-street-map")
-        
         st.plotly_chart(fig_map, use_container_width=True)
     else:
         st.warning("No geospatial data found for plotting with the current filter selection.")
 
-with tab3:
+
+# -------------------------
+# TAB 4 - Delivery Routes
+# -------------------------
+with tab4:
     st.header("Delivery Routes")
 
     state_filter = get_state_filter_sql_clause("t6", st.session_state.selected_states)
@@ -139,7 +254,6 @@ with tab3:
     df_routes = run_query(sql_delivery_routes)
     
     if not df_routes.empty:
-        # Calculate the distance
         df_routes['distance_km'] = df_routes.apply(
             lambda x: haversine(x.seller_lat, x.seller_lon, x.cust_lat, x.cust_lon), axis=1
         )
@@ -153,7 +267,7 @@ with tab3:
             fig_routes.add_trace(go.Scattermapbox(
                 mode="lines",
                 lon=[row.seller_lon, row.cust_lon],
-                lat=[row.seller_lat, row.cust_lat],
+                lat=[row.seller_lat, row.cust_lon],
                 line=dict(width=2, color="orange"),
                 hoverinfo="text",
                 text=f"Order ID: {row.order_id}<br>Distance: {row.distance_km:.1f} km"
