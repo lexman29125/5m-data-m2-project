@@ -258,6 +258,14 @@ with tab4:
             lambda x: haversine(x.seller_lat, x.seller_lon, x.cust_lat, x.cust_lon), axis=1
         )
 
+        # Get nearest and furthest routes
+        min_distance = df_routes['distance_km'].min()
+        max_distance = df_routes['distance_km'].max()
+        
+        # Display the distances
+        st.info(f"The nearest delivery route is **{min_distance:.1f} km**.")
+        st.info(f"The furthest delivery route is **{max_distance:.1f} km**.")
+
         st.subheader("Interactive Map of Delivery Routes")
         sample_size = st.slider("Max Routes to Display", min_value=50, max_value=len(df_routes), value=200, step=50)
         df_sample = df_routes.head(sample_size).copy()
@@ -267,7 +275,7 @@ with tab4:
             fig_routes.add_trace(go.Scattermapbox(
                 mode="lines",
                 lon=[row.seller_lon, row.cust_lon],
-                lat=[row.seller_lat, row.cust_lon],
+                lat=[row.seller_lat, row.cust_lat],
                 line=dict(width=2, color="orange"),
                 hoverinfo="text",
                 text=f"Order ID: {row.order_id}<br>Distance: {row.distance_km:.1f} km"
