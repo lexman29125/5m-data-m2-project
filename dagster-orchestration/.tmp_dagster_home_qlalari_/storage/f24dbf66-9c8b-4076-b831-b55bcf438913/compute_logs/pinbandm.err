@@ -1,0 +1,28 @@
+[32m2025-09-10 23:14:46 +0800[0m - dagster - [34mDEBUG[0m - etl_job - f24dbf66-9c8b-4076-b831-b55bcf438913 - 300088 - LOGS_CAPTURED - Started capturing logs in process (pid: 300088).
+[32m2025-09-10 23:14:46 +0800[0m - dagster - [34mDEBUG[0m - etl_job - f24dbf66-9c8b-4076-b831-b55bcf438913 - 300088 - pipeline_dbt_seed - STEP_START - Started execution of step "pipeline_dbt_seed".
+[32m2025-09-10 23:14:46 +0800[0m - dagster - [34mINFO[0m - etl_job - f24dbf66-9c8b-4076-b831-b55bcf438913 - pipeline_dbt_seed - Running dbt command: dbt seed --project-dir /home/ser/DSAI/5m-data-m2-project-2/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/../../../dbt_olist --profiles-dir /home/ser/DSAI/5m-data-m2-project-2/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/../../../dbt_olist
+[32m2025-09-10 23:15:00 +0800[0m - dagster - [34mINFO[0m - etl_job - f24dbf66-9c8b-4076-b831-b55bcf438913 - pipeline_dbt_seed - [0m15:14:47  Running with dbt=1.9.6
+[0m15:14:50  Registered adapter: bigquery=1.9.2
+[0m15:14:51  Found 46 models, 1 seed, 2 operations, 63 data tests, 9 sources, 1678 macros
+[0m15:14:51  
+[0m15:14:51  Concurrency: 4 threads (target='dev')
+[0m15:14:51  
+[0m15:14:52  Elementary: Runtime data: {"config": {}, "dbt_version": "1.9.6", "elementary_version": "0.19.4", "database": "calm-analogy-468216-e0", "schema": "m2_prod_elementary"}
+[0m15:14:52  1 of 1 START hook: elementary.on-run-start.0 ................................... [RUN]
+[0m15:14:52  1 of 1 OK hook: elementary.on-run-start.0 ...................................... [[32mOK[0m in 0.06s]
+[0m15:14:52  
+[0m15:14:52  1 of 1 START seed file m2_prod.product_category_name_translation ............... [RUN]
+[0m15:14:58  1 of 1 OK loaded seed file m2_prod.product_category_name_translation ........... [[32mINSERT 71[0m in 5.85s]
+[0m15:14:58  
+[0m15:14:58  1 of 1 START hook: elementary.on-run-end.0 ..................................... [RUN]
+[0m15:14:58  1 of 1 OK hook: elementary.on-run-end.0 ........................................ [[32mOK[0m in 0.05s]
+[0m15:14:58  
+[0m15:14:58  Finished running 2 project hooks, 1 seed in 0 hours 0 minutes and 7.06 seconds (7.06s).
+[0m15:14:58  
+[0m15:14:58  [32mCompleted successfully[0m
+[0m15:14:58  
+[0m15:14:58  Done. PASS=3 WARN=0 ERROR=0 SKIP=0 TOTAL=3
+
+[32m2025-09-10 23:15:00 +0800[0m - dagster - [34mDEBUG[0m - etl_job - f24dbf66-9c8b-4076-b831-b55bcf438913 - 300088 - pipeline_dbt_seed - STEP_OUTPUT - Yielded output "result" of type "Nothing". (Type check passed).
+[32m2025-09-10 23:15:01 +0800[0m - dagster - [34mDEBUG[0m - etl_job - f24dbf66-9c8b-4076-b831-b55bcf438913 - 300088 - pipeline_dbt_seed - ASSET_MATERIALIZATION - Materialized value pipeline_dbt_seed.
+[32m2025-09-10 23:15:01 +0800[0m - dagster - [34mDEBUG[0m - etl_job - f24dbf66-9c8b-4076-b831-b55bcf438913 - 300088 - pipeline_dbt_seed - STEP_SUCCESS - Finished execution of step "pipeline_dbt_seed" in 14.98s.

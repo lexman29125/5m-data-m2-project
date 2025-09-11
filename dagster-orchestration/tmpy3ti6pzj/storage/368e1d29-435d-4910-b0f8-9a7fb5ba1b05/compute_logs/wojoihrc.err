@@ -1,0 +1,2 @@
+[32m2025-09-10 22:14:33 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 368e1d29-435d-4910-b0f8-9a7fb5ba1b05 - 18319 - LOGS_CAPTURED - Started capturing logs in process (pid: 18319).
+[32m2025-09-10 22:14:33 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 368e1d29-435d-4910-b0f8-9a7fb5ba1b05 - 18319 - meltano_run_elt - STEP_START - Started execution of step "meltano_run_elt".

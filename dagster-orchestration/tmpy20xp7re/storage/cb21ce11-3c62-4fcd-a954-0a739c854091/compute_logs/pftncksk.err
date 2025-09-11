@@ -1,0 +1,6 @@
+[32m2025-08-31 21:48:17 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - cb21ce11-3c62-4fcd-a954-0a739c854091 - 87005 - LOGS_CAPTURED - Started capturing logs in process (pid: 87005).
+[32m2025-08-31 21:48:17 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - cb21ce11-3c62-4fcd-a954-0a739c854091 - 87005 - ingestion - STEP_START - Started execution of step "ingestion".
+[32m2025-08-31 21:48:25 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - cb21ce11-3c62-4fcd-a954-0a739c854091 - 87005 - ingestion - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
+[32m2025-08-31 21:48:25 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - cb21ce11-3c62-4fcd-a954-0a739c854091 - 87005 - ingestion - ASSET_MATERIALIZATION - Materialized value ingestion.
+[32m2025-08-31 21:48:25 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - cb21ce11-3c62-4fcd-a954-0a739c854091 - 87005 - ingestion - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+[32m2025-08-31 21:48:25 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - cb21ce11-3c62-4fcd-a954-0a739c854091 - 87005 - ingestion - STEP_SUCCESS - Finished execution of step "ingestion" in 7.59s.

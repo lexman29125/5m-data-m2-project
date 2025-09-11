@@ -1,0 +1,5 @@
+[32m2025-09-06 11:47:50 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 2d036690-b0ea-4b8b-9cfd-78f608ee5a4c - 624431 - LOGS_CAPTURED - Started capturing logs in process (pid: 624431).
+[32m2025-09-06 11:47:50 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 2d036690-b0ea-4b8b-9cfd-78f608ee5a4c - 624431 - pipeline_dbt_seed - STEP_START - Started execution of step "pipeline_dbt_seed".
+[32m2025-09-06 11:48:04 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 2d036690-b0ea-4b8b-9cfd-78f608ee5a4c - 624431 - pipeline_dbt_seed - STEP_OUTPUT - Yielded output "result" of type "Nothing". (Type check passed).
+[32m2025-09-06 11:48:04 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 2d036690-b0ea-4b8b-9cfd-78f608ee5a4c - 624431 - pipeline_dbt_seed - ASSET_MATERIALIZATION - Materialized value pipeline_dbt_seed.
+[32m2025-09-06 11:48:04 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 2d036690-b0ea-4b8b-9cfd-78f608ee5a4c - 624431 - pipeline_dbt_seed - STEP_SUCCESS - Finished execution of step "pipeline_dbt_seed" in 13.94s.

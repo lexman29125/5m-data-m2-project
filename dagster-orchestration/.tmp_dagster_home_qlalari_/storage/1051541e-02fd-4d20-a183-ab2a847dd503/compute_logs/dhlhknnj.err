@@ -1,0 +1,20 @@
+[32m2025-09-10 23:14:08 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 1051541e-02fd-4d20-a183-ab2a847dd503 - 295695 - LOGS_CAPTURED - Started capturing logs in process (pid: 295695).
+[32m2025-09-10 23:14:08 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 1051541e-02fd-4d20-a183-ab2a847dd503 - 295695 - pipeline_dbt_deps - STEP_START - Started execution of step "pipeline_dbt_deps".
+[32m2025-09-10 23:14:08 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 1051541e-02fd-4d20-a183-ab2a847dd503 - pipeline_dbt_deps - Running dbt command: dbt deps --project-dir /home/ser/DSAI/5m-data-m2-project-2/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/../../../dbt_olist --profiles-dir /home/ser/DSAI/5m-data-m2-project-2/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/../../../dbt_olist
+[32m2025-09-10 23:14:14 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 1051541e-02fd-4d20-a183-ab2a847dd503 - pipeline_dbt_deps - [0m15:14:10  Running with dbt=1.9.6
+[0m15:14:11  Installing dbt-labs/dbt_utils
+[0m15:14:11  Installed from version 1.3.0
+[0m15:14:11  Up to date!
+[0m15:14:11  Installing metaplane/dbt_expectations
+[0m15:14:12  Installed from version 0.10.9
+[0m15:14:12  Up to date!
+[0m15:14:12  Installing godatadriven/dbt_date
+[0m15:14:12  Installed from version 0.15.0
+[0m15:14:12  Up to date!
+[0m15:14:12  Installing elementary-data/elementary
+[0m15:14:12  Installed from version 0.19.4
+[0m15:14:12  Up to date!
+
+[32m2025-09-10 23:14:14 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 1051541e-02fd-4d20-a183-ab2a847dd503 - 295695 - pipeline_dbt_deps - STEP_OUTPUT - Yielded output "result" of type "Nothing". (Type check passed).
+[32m2025-09-10 23:14:14 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 1051541e-02fd-4d20-a183-ab2a847dd503 - 295695 - pipeline_dbt_deps - ASSET_MATERIALIZATION - Materialized value pipeline_dbt_deps.
+[32m2025-09-10 23:14:14 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 1051541e-02fd-4d20-a183-ab2a847dd503 - 295695 - pipeline_dbt_deps - STEP_SUCCESS - Finished execution of step "pipeline_dbt_deps" in 5.57s.

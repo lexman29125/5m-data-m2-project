@@ -1,0 +1,994 @@
+[32m2025-09-10 23:13:33 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - eecf634f-24d0-4eae-9b46-2f6586070da6 - 291460 - LOGS_CAPTURED - Started capturing logs in process (pid: 291460).
+[32m2025-09-10 23:13:33 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - eecf634f-24d0-4eae-9b46-2f6586070da6 - 291460 - pipeline_dbt_test - STEP_START - Started execution of step "pipeline_dbt_test".
+[32m2025-09-10 23:13:33 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - eecf634f-24d0-4eae-9b46-2f6586070da6 - pipeline_dbt_test - Running dbt command: dbt test --project-dir /home/ser/DSAI/5m-data-m2-project-2/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/../../../dbt_olist --profiles-dir /home/ser/DSAI/5m-data-m2-project-2/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/../../../dbt_olist
+[32m2025-09-10 23:13:53 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - eecf634f-24d0-4eae-9b46-2f6586070da6 - pipeline_dbt_test - [0m15:13:34  Running with dbt=1.9.6
+[0m15:13:37  Registered adapter: bigquery=1.9.2
+[0m15:13:38  Found 46 models, 1 seed, 2 operations, 63 data tests, 9 sources, 1678 macros
+[0m15:13:38  
+[0m15:13:38  Concurrency: 4 threads (target='dev')
+[0m15:13:38  
+[0m15:13:38  Elementary: Runtime data: {"config": {}, "dbt_version": "1.9.6", "elementary_version": "0.19.4", "database": "calm-analogy-468216-e0", "schema": "m2_prod_elementary"}
+[0m15:13:39  1 of 1 START hook: elementary.on-run-start.0 ................................... [RUN]
+[0m15:13:39  1 of 1 OK hook: elementary.on-run-start.0 ...................................... [[32mOK[0m in 0.68s]
+[0m15:13:39  
+[0m15:13:39  1 of 63 START test dbt_expectations_expect_column_values_to_be_between_dim_geolocation_latitude__90___90  [RUN]
+[0m15:13:39  2 of 63 START test dbt_expectations_expect_column_values_to_be_between_dim_geolocation_longitude__180___180  [RUN]
+[0m15:13:39  3 of 63 START test dbt_expectations_expect_column_values_to_be_between_fact_order_items_delivery_time_days__365__0  [RUN]
+[0m15:13:39  4 of 63 START test dbt_expectations_expect_column_values_to_be_between_fact_order_items_freight_value__0  [RUN]
+[0m15:13:39  [[33mWARNING[0m]: Installed package 'elementary' is overriding the built-in
+materialization 'test'. Overrides of built-in materializations from installed
+packages will be deprecated in future versions of dbt. For more information:
+https://docs.getdbt.com/reference/global-configs/legacy-behaviors
+[0m15:13:39  [[33mWARNING[0m]: Installed package 'elementary' is overriding the built-in
+materialization 'test'. Overrides of built-in materializations from installed
+packages will be deprecated in future versions of dbt. For more information:
+https://docs.getdbt.com/reference/global-configs/legacy-behaviors
+[0m15:13:39  [[33mWARNING[0m]: Installed package 'elementary' is overriding the built-in
+materialization 'test'. Overrides of built-in materializations from installed
+packages will be deprecated in future versions of dbt. For more information:
+https://docs.getdbt.com/reference/global-configs/legacy-behaviors
+[0m15:13:39  [[33mWARNING[0m]: Installed package 'elementary' is overriding the built-in
+materialization 'test'. Overrides of built-in materializations from installed
+packages will be deprecated in future versions of dbt. For more information:
+https://docs.getdbt.com/reference/global-configs/legacy-behaviors
+[0m15:13:40  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:42fb701a-bd14-4f99-aaaa-218590c50c61&page=queryresults
+[0m15:13:40  2 of 63 ERROR dbt_expectations_expect_column_values_to_be_between_dim_geolocation_longitude__180___180  [[31mERROR[0m in 1.02s]
+[0m15:13:40  5 of 63 START test dbt_expectations_expect_column_values_to_be_between_fact_order_items_price__0  [RUN]
+[0m15:13:40  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:be186b69-e62f-47ea-90cc-7fc3e8293d5b&page=queryresults
+[0m15:13:40  4 of 63 ERROR dbt_expectations_expect_column_values_to_be_between_fact_order_items_freight_value__0  [[31mERROR[0m in 1.04s]
+[0m15:13:40  6 of 63 START test dbt_expectations_expect_column_values_to_be_between_fact_order_items_review_score__5__1  [RUN]
+[0m15:13:40  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:9abbbe16-5ac1-41b1-836d-7134350b372d&page=queryresults
+[0m15:13:40  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:52ef3b30-2f43-4543-baab-6020873303a3&page=queryresults
+[0m15:13:40  1 of 63 ERROR dbt_expectations_expect_column_values_to_be_between_dim_geolocation_latitude__90___90  [[31mERROR[0m in 1.15s]
+[0m15:13:40  3 of 63 ERROR dbt_expectations_expect_column_values_to_be_between_fact_order_items_delivery_time_days__365__0  [[31mERROR[0m in 1.15s]
+[0m15:13:40  7 of 63 START test dbt_expectations_expect_column_values_to_be_between_stg_order_reviews_review_score__5__1  [RUN]
+[0m15:13:40  8 of 63 START test dbt_expectations_expect_column_values_to_be_in_set_dim_dates_day_of_week__Monday__Tuesday__Wednesday__Thursday__Friday__Saturday__Sunday  [RUN]
+[0m15:13:41  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:cc81d882-b4bb-415b-aa8c-c805ea190e00&page=queryresults
+[0m15:13:41  5 of 63 ERROR dbt_expectations_expect_column_values_to_be_between_fact_order_items_price__0  [[31mERROR[0m in 0.71s]
+[0m15:13:41  9 of 63 START test dbt_expectations_expect_column_values_to_be_in_set_dim_dates_month_name__January__February__March__April__May__June__July__August__September__October__November__December  [RUN]
+[0m15:13:41  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:230d6472-ae9f-46bd-a5eb-95e18c574363&page=queryresults
+[0m15:13:41  6 of 63 ERROR dbt_expectations_expect_column_values_to_be_between_fact_order_items_review_score__5__1  [[31mERROR[0m in 0.73s]
+[0m15:13:41  10 of 63 START test dbt_expectations_expect_column_values_to_be_in_set_dim_payments_payment_type__credit_card__debit_card__boleto__voucher__not_defined  [RUN]
+[0m15:13:41  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:64a26ddc-a541-48d6-83ab-21029c911f98&page=queryresults
+[0m15:13:41  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:e2b68d87-6655-40d3-af7c-e101ed91defd&page=queryresults
+[0m15:13:41  8 of 63 ERROR dbt_expectations_expect_column_values_to_be_in_set_dim_dates_day_of_week__Monday__Tuesday__Wednesday__Thursday__Friday__Saturday__Sunday  [[31mERROR[0m in 0.71s]
+[0m15:13:41  7 of 63 ERROR dbt_expectations_expect_column_values_to_be_between_stg_order_reviews_review_score__5__1  [[31mERROR[0m in 0.71s]
+[0m15:13:41  11 of 63 START test dbt_expectations_expect_column_values_to_be_of_type_fact_order_items_freight_value__numeric  [RUN]
+[0m15:13:41  12 of 63 START test dbt_expectations_expect_column_values_to_be_of_type_fact_order_items_price__numeric  [RUN]
+[0m15:13:41  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:de39fbde-6f15-4b76-a1a1-d1d642974299&page=queryresults
+[0m15:13:41  10 of 63 ERROR dbt_expectations_expect_column_values_to_be_in_set_dim_payments_payment_type__credit_card__debit_card__boleto__voucher__not_defined  [[31mERROR[0m in 0.77s]
+[0m15:13:41  13 of 63 START test dbt_expectations_expect_column_values_to_be_of_type_stg_orders_order_purchase_timestamp__timestamp  [RUN]
+[0m15:13:41  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:ca17a3f7-83b1-4899-b328-d3398e766703&page=queryresults
+[0m15:13:41  9 of 63 ERROR dbt_expectations_expect_column_values_to_be_in_set_dim_dates_month_name__January__February__March__April__May__June__July__August__September__October__November__December  [[31mERROR[0m in 0.86s]
+[0m15:13:41  14 of 63 START test dbt_utils_unique_combination_of_columns_fact_order_items_order_id__order_item_id  [RUN]
+[0m15:13:41  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:e3baf60c-a4ac-4de0-9544-af3565f95595&page=queryresults
+[0m15:13:41  12 of 63 ERROR dbt_expectations_expect_column_values_to_be_of_type_fact_order_items_price__numeric  [[31mERROR[0m in 0.80s]
+[0m15:13:41  15 of 63 START test dbt_utils_unique_combination_of_columns_stg_order_items_order_id__order_item_id  [RUN]
+[0m15:13:41  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:5bcc9e47-8462-4c77-8d48-bc4f3236d34c&page=queryresults
+[0m15:13:42  11 of 63 ERROR dbt_expectations_expect_column_values_to_be_of_type_fact_order_items_freight_value__numeric  [[31mERROR[0m in 0.83s]
+[0m15:13:42  16 of 63 START test dbt_utils_unique_combination_of_columns_stg_order_payments_order_id__payment_sequential  [RUN]
+[0m15:13:42  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:7b195941-37b1-4ed1-8d3c-ac927d4b366f&page=queryresults
+[0m15:13:42  14 of 63 ERROR dbt_utils_unique_combination_of_columns_fact_order_items_order_id__order_item_id  [[31mERROR[0m in 0.57s]
+[0m15:13:42  17 of 63 START test not_null_dim_customers_customer_id ......................... [RUN]
+[0m15:13:42  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:26059066-6a4f-40de-8498-392f448e4b39&page=queryresults
+[0m15:13:42  16 of 63 ERROR dbt_utils_unique_combination_of_columns_stg_order_payments_order_id__payment_sequential  [[31mERROR[0m in 0.61s]
+[0m15:13:42  18 of 63 START test not_null_dim_dates_date_key ................................ [RUN]
+[0m15:13:42  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:df974b5f-92cb-4050-aeff-8f3a169391e0&page=queryresults
+[0m15:13:42  15 of 63 ERROR dbt_utils_unique_combination_of_columns_stg_order_items_order_id__order_item_id  [[31mERROR[0m in 0.68s]
+[0m15:13:42  19 of 63 START test not_null_dim_geolocation_geolocation_zip_code_prefix ....... [RUN]
+[0m15:13:42  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:a1f72a27-363f-4dad-b6e4-7a9aa86d854c&page=queryresults
+[0m15:13:42  13 of 63 ERROR dbt_expectations_expect_column_values_to_be_of_type_stg_orders_order_purchase_timestamp__timestamp  [[31mERROR[0m in 0.93s]
+[0m15:13:42  20 of 63 START test not_null_dim_payments_payment_type_key ..................... [RUN]
+[0m15:13:43  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:b6f97ab1-3431-461e-a740-6d150472c65e&page=queryresults
+[0m15:13:43  17 of 63 ERROR not_null_dim_customers_customer_id .............................. [[31mERROR[0m in 0.62s]
+[0m15:13:43  21 of 63 START test not_null_dim_products_product_id ........................... [RUN]
+[0m15:13:43  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:8f76c34f-a19b-4ac6-8e5e-ad29b2cc0f51&page=queryresults
+[0m15:13:43  18 of 63 ERROR not_null_dim_dates_date_key ..................................... [[31mERROR[0m in 0.65s]
+[0m15:13:43  22 of 63 START test not_null_dim_sellers_seller_id ............................. [RUN]
+[0m15:13:43  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:275a696c-36ca-44f2-a4fa-9991f093c856&page=queryresults
+[0m15:13:43  20 of 63 ERROR not_null_dim_payments_payment_type_key .......................... [[31mERROR[0m in 0.54s]
+[0m15:13:43  23 of 63 START test not_null_fact_order_items_customer_id ...................... [RUN]
+[0m15:13:43  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:c0c1c555-f0a1-42d9-abd5-f0927aef62e6&page=queryresults
+[0m15:13:43  19 of 63 ERROR not_null_dim_geolocation_geolocation_zip_code_prefix ............ [[31mERROR[0m in 0.67s]
+[0m15:13:43  24 of 63 START test not_null_fact_order_items_order_date_key ................... [RUN]
+[0m15:13:43  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:60216cd4-4d7e-4c1b-b6fa-6452fb8529e2&page=queryresults
+[0m15:13:43  21 of 63 ERROR not_null_dim_products_product_id ................................ [[31mERROR[0m in 0.63s]
+[0m15:13:43  25 of 63 START test not_null_fact_order_items_order_id ......................... [RUN]
+[0m15:13:43  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:426d74c1-782e-4577-a091-6f388114bc21&page=queryresults
+[0m15:13:43  24 of 63 ERROR not_null_fact_order_items_order_date_key ........................ [[31mERROR[0m in 0.63s]
+[0m15:13:43  26 of 63 START test not_null_fact_order_items_order_item_id .................... [RUN]
+[0m15:13:43  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:75bd7f17-1e42-44da-be3f-bedf14df5e49&page=queryresults
+[0m15:13:44  22 of 63 ERROR not_null_dim_sellers_seller_id .................................. [[31mERROR[0m in 0.74s]
+[0m15:13:44  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:d3bdd3d4-e681-46a7-8a3e-32fd461ad6ce&page=queryresults
+[0m15:13:44  27 of 63 START test not_null_fact_order_items_order_item_key ................... [RUN]
+[0m15:13:44  23 of 63 ERROR not_null_fact_order_items_customer_id ........................... [[31mERROR[0m in 0.72s]
+[0m15:13:44  28 of 63 START test not_null_fact_order_items_payment_type_key ................. [RUN]
+[0m15:13:44  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:1e4c5640-f0f7-4e9b-a71e-cd56739dfff7&page=queryresults
+[0m15:13:44  25 of 63 ERROR not_null_fact_order_items_order_id .............................. [[31mERROR[0m in 0.59s]
+[0m15:13:44  29 of 63 START test not_null_fact_order_items_price ............................ [RUN]
+[0m15:13:44  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:aff8c1fc-838a-4674-afb5-525d3a60f8bb&page=queryresults
+[0m15:13:44  28 of 63 ERROR not_null_fact_order_items_payment_type_key ...................... [[31mERROR[0m in 0.56s]
+[0m15:13:44  30 of 63 START test not_null_fact_order_items_product_id ....................... [RUN]
+[0m15:13:44  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:0cb05ecb-d9bb-49aa-a451-d9f1f11cac8d&page=queryresults
+[0m15:13:44  26 of 63 ERROR not_null_fact_order_items_order_item_id ......................... [[31mERROR[0m in 0.70s]
+[0m15:13:44  31 of 63 START test not_null_fact_order_items_seller_id ........................ [RUN]
+[0m15:13:44  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:220751e3-c1b5-4ec5-9094-92b4d618d2a6&page=queryresults
+[0m15:13:44  27 of 63 ERROR not_null_fact_order_items_order_item_key ........................ [[31mERROR[0m in 0.81s]
+[0m15:13:44  32 of 63 START test not_null_stg_customers_customer_id ......................... [RUN]
+[0m15:13:44  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:aa317ba3-614c-4033-b8be-a99544d32672&page=queryresults
+[0m15:13:44  29 of 63 ERROR not_null_fact_order_items_price ................................. [[31mERROR[0m in 0.65s]
+[0m15:13:44  33 of 63 START test not_null_stg_customers_customer_unique_id .................. [RUN]
+[0m15:13:45  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:a6fe38b9-299a-44d6-b1ff-b1e9223ea949&page=queryresults
+[0m15:13:45  30 of 63 ERROR not_null_fact_order_items_product_id ............................ [[31mERROR[0m in 0.63s]
+[0m15:13:45  34 of 63 START test not_null_stg_customers_customer_zip_code_prefix ............ [RUN]
+[0m15:13:45  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:f6ff6be0-a153-48ad-8f7f-523bd28ac371&page=queryresults
+[0m15:13:45  31 of 63 ERROR not_null_fact_order_items_seller_id ............................. [[31mERROR[0m in 0.63s]
+[0m15:13:45  35 of 63 START test not_null_stg_geolocation_geolocation_zip_code_prefix ....... [RUN]
+[0m15:13:45  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:10a184a6-4553-4c4f-bb8d-42be4d1c726e&page=queryresults
+[0m15:13:45  32 of 63 ERROR not_null_stg_customers_customer_id .............................. [[31mERROR[0m in 0.52s]
+[0m15:13:45  36 of 63 START test not_null_stg_order_items_order_id .......................... [RUN]
+[0m15:13:45  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:3e07fce2-c4e6-4cd0-ad75-8a1b825af650&page=queryresults
+[0m15:13:45  33 of 63 ERROR not_null_stg_customers_customer_unique_id ....................... [[31mERROR[0m in 0.53s]
+[0m15:13:45  37 of 63 START test not_null_stg_order_items_order_item_id ..................... [RUN]
+[0m15:13:45  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:a8716642-f2a5-4f2a-8875-0c6143c6e0fb&page=queryresults
+[0m15:13:45  34 of 63 ERROR not_null_stg_customers_customer_zip_code_prefix ................. [[31mERROR[0m in 0.61s]
+[0m15:13:45  38 of 63 START test not_null_stg_order_items_product_id ........................ [RUN]
+[0m15:13:45  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:6cdcc86d-921f-40ac-afe0-79636066ede3&page=queryresults
+[0m15:13:45  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:75dcab42-68f5-48db-bc7f-e758537408c3&page=queryresults
+[0m15:13:45  35 of 63 ERROR not_null_stg_geolocation_geolocation_zip_code_prefix ............ [[31mERROR[0m in 0.61s]
+[0m15:13:45  36 of 63 ERROR not_null_stg_order_items_order_id ............................... [[31mERROR[0m in 0.54s]
+[0m15:13:45  39 of 63 START test not_null_stg_order_items_seller_id ......................... [RUN]
+[0m15:13:45  40 of 63 START test not_null_stg_order_reviews_order_id ........................ [RUN]
+[0m15:13:46  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:cde6bfc9-16f5-409b-8535-ba0d0610e534&page=queryresults
+[0m15:13:46  37 of 63 ERROR not_null_stg_order_items_order_item_id .......................... [[31mERROR[0m in 0.81s]
+[0m15:13:46  41 of 63 START test not_null_stg_order_reviews_review_id ....................... [RUN]
+[0m15:13:46  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:6d751225-6edf-47a0-92cd-3a8a08b564df&page=queryresults
+[0m15:13:46  38 of 63 ERROR not_null_stg_order_items_product_id ............................. [[31mERROR[0m in 0.82s]
+[0m15:13:46  42 of 63 START test not_null_stg_order_reviews_review_score .................... [RUN]
+[0m15:13:46  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:d165feeb-ac87-415e-b07d-c61ae1042477&page=queryresults
+[0m15:13:46  39 of 63 ERROR not_null_stg_order_items_seller_id .............................. [[31mERROR[0m in 0.82s]
+[0m15:13:46  43 of 63 START test not_null_stg_orders_customer_id ............................ [RUN]
+[0m15:13:46  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:08f7ac9d-8789-4984-b044-53899bc7ac00&page=queryresults
+[0m15:13:46  40 of 63 ERROR not_null_stg_order_reviews_order_id ............................. [[31mERROR[0m in 0.91s]
+[0m15:13:46  44 of 63 START test not_null_stg_orders_order_id ............................... [RUN]
+[0m15:13:46  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:39bec06a-e777-4d39-98c4-68a573539edb&page=queryresults
+[0m15:13:46  41 of 63 ERROR not_null_stg_order_reviews_review_id ............................ [[31mERROR[0m in 0.64s]
+[0m15:13:46  45 of 63 START test not_null_stg_orders_order_purchase_timestamp ............... [RUN]
+[0m15:13:47  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:14cb1fc3-337b-4e49-9efa-7252bea6241e&page=queryresults
+[0m15:13:47  42 of 63 ERROR not_null_stg_order_reviews_review_score ......................... [[31mERROR[0m in 0.57s]
+[0m15:13:47  46 of 63 START test not_null_stg_products_product_id ........................... [RUN]
+[0m15:13:47  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:a4da006b-912b-434a-86d7-52e0a63d58fd&page=queryresults
+[0m15:13:47  45 of 63 ERROR not_null_stg_orders_order_purchase_timestamp .................... [[31mERROR[0m in 0.52s]
+[0m15:13:47  47 of 63 START test not_null_stg_sellers_seller_id ............................. [RUN]
+[0m15:13:47  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:a395d59c-8e0e-4cf3-87e3-dc2a635c3f84&page=queryresults
+[0m15:13:47  44 of 63 ERROR not_null_stg_orders_order_id .................................... [[31mERROR[0m in 0.65s]
+[0m15:13:47  48 of 63 START test relationships_dim_customers_geolocation_zip_code_prefix__geolocation_zip_code_prefix__ref_dim_geolocation_  [RUN]
+[0m15:13:47  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:5f8ea2c4-8838-489f-a589-32b64ffaaefc&page=queryresults
+[0m15:13:47  46 of 63 ERROR not_null_stg_products_product_id ................................ [[31mERROR[0m in 0.57s]
+[0m15:13:47  49 of 63 START test relationships_dim_sellers_geolocation_zip_code_prefix__geolocation_zip_code_prefix__ref_dim_geolocation_  [RUN]
+[0m15:13:48  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:c12c6a04-66fb-485d-8581-6499b2ca048b&page=queryresults
+[0m15:13:48  47 of 63 ERROR not_null_stg_sellers_seller_id .................................. [[31mERROR[0m in 0.57s]
+[0m15:13:48  50 of 63 START test relationships_fact_order_items_customer_id__customer_id__ref_dim_customers_  [RUN]
+[0m15:13:48  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:eaae40f5-0039-48fb-8b5a-2960367e768b&page=queryresults
+[0m15:13:48  48 of 63 ERROR relationships_dim_customers_geolocation_zip_code_prefix__geolocation_zip_code_prefix__ref_dim_geolocation_  [[31mERROR[0m in 0.68s]
+[0m15:13:48  51 of 63 START test relationships_fact_order_items_payment_type_key__payment_type_key__ref_dim_payments_  [RUN]
+[0m15:13:48  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:1ac34b82-5265-44a4-8847-faa33f870281&page=queryresults
+[0m15:13:48  43 of 63 ERROR not_null_stg_orders_customer_id ................................. [[31mERROR[0m in 1.61s]
+[0m15:13:48  52 of 63 START test relationships_fact_order_items_product_id__product_id__ref_dim_products_  [RUN]
+[0m15:13:48  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:4781be53-85fe-4cb8-ae64-0effea7c13f3&page=queryresults
+[0m15:13:48  49 of 63 ERROR relationships_dim_sellers_geolocation_zip_code_prefix__geolocation_zip_code_prefix__ref_dim_geolocation_  [[31mERROR[0m in 0.65s]
+[0m15:13:48  53 of 63 START test relationships_fact_order_items_seller_id__seller_id__ref_dim_sellers_  [RUN]
+[0m15:13:48  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:202f7d51-3545-4788-8926-8e130d1c3541&page=queryresults
+[0m15:13:48  50 of 63 ERROR relationships_fact_order_items_customer_id__customer_id__ref_dim_customers_  [[31mERROR[0m in 0.60s]
+[0m15:13:48  54 of 63 START test unique_dim_customers_customer_id ........................... [RUN]
+[0m15:13:48  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:a485c80e-b56f-4f6b-9eee-edbb53a4b624&page=queryresults
+[0m15:13:48  52 of 63 ERROR relationships_fact_order_items_product_id__product_id__ref_dim_products_  [[31mERROR[0m in 0.59s]
+[0m15:13:48  55 of 63 START test unique_dim_dates_date_key .................................. [RUN]
+[0m15:13:49  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:f12836d1-6ecd-4ffb-b711-110c5b02f706&page=queryresults
+[0m15:13:49  51 of 63 ERROR relationships_fact_order_items_payment_type_key__payment_type_key__ref_dim_payments_  [[31mERROR[0m in 0.84s]
+[0m15:13:49  56 of 63 START test unique_dim_geolocation_geolocation_zip_code_prefix ......... [RUN]
+[0m15:13:49  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:c5661087-d248-497c-b67d-4c938bfe5b82&page=queryresults
+[0m15:13:49  54 of 63 ERROR unique_dim_customers_customer_id ................................ [[31mERROR[0m in 0.52s]
+[0m15:13:49  57 of 63 START test unique_dim_payments_payment_type_key ....................... [RUN]
+[0m15:13:49  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:77319e56-d2ef-4cbf-8ef0-085f7054aaf0&page=queryresults
+[0m15:13:49  53 of 63 ERROR relationships_fact_order_items_seller_id__seller_id__ref_dim_sellers_  [[31mERROR[0m in 0.72s]
+[0m15:13:49  58 of 63 START test unique_dim_products_product_id ............................. [RUN]
+[0m15:13:49  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:888003a2-7b90-4088-bb8d-ef004deea2f3&page=queryresults
+[0m15:13:49  55 of 63 ERROR unique_dim_dates_date_key ....................................... [[31mERROR[0m in 0.65s]
+[0m15:13:49  59 of 63 START test unique_dim_sellers_seller_id ............................... [RUN]
+[0m15:13:49  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:ba790e3e-bb52-41a7-8961-b15ac714f616&page=queryresults
+[0m15:13:49  57 of 63 ERROR unique_dim_payments_payment_type_key ............................ [[31mERROR[0m in 0.58s]
+[0m15:13:49  60 of 63 START test unique_fact_order_items_order_item_key ..................... [RUN]
+[0m15:13:49  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:d64343b0-0397-469b-87db-2eaf661bbdd6&page=queryresults
+[0m15:13:49  56 of 63 ERROR unique_dim_geolocation_geolocation_zip_code_prefix .............. [[31mERROR[0m in 0.77s]
+[0m15:13:49  61 of 63 START test unique_stg_customers_customer_id ........................... [RUN]
+[0m15:13:49  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:35b756eb-6245-442f-b8d2-25a98a5865f6&page=queryresults
+[0m15:13:49  58 of 63 ERROR unique_dim_products_product_id .................................. [[31mERROR[0m in 0.62s]
+[0m15:13:49  62 of 63 START test unique_stg_products_product_id ............................. [RUN]
+[0m15:13:50  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:22e8ad11-d5ce-4660-8af4-5691499f5010&page=queryresults
+[0m15:13:50  59 of 63 ERROR unique_dim_sellers_seller_id .................................... [[31mERROR[0m in 0.51s]
+[0m15:13:50  63 of 63 START test unique_stg_sellers_seller_id ............................... [RUN]
+[0m15:13:50  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:d6a81eb5-1402-45c7-b50a-20d094e877a8&page=queryresults
+[0m15:13:50  62 of 63 ERROR unique_stg_products_product_id .................................. [[31mERROR[0m in 0.55s]
+[0m15:13:50  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:f49ade59-e58a-4b7e-8765-46a650c2c8cb&page=queryresults
+[0m15:13:50  60 of 63 ERROR unique_fact_order_items_order_item_key .......................... [[31mERROR[0m in 0.71s]
+[0m15:13:50  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:4db5d5f5-58b4-41a0-8b8d-56560060d44b&page=queryresults
+[0m15:13:50  61 of 63 ERROR unique_stg_customers_customer_id ................................ [[31mERROR[0m in 0.66s]
+[0m15:13:50  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:63307375-def3-4387-be6e-3fe6c3103b43&page=queryresults
+[0m15:13:50  63 of 63 ERROR unique_stg_sellers_seller_id .................................... [[31mERROR[0m in 0.64s]
+[0m15:13:50  
+[0m15:13:51  Missing Elementary models in 'calm-analogy-468216-e0.m2_prod_elementary'. Please run 'dbt run -s elementary --target dev'.
+[0m15:13:51  1 of 1 START hook: elementary.on-run-end.0 ..................................... [RUN]
+[0m15:13:51  1 of 1 OK hook: elementary.on-run-end.0 ........................................ [[32mOK[0m in 0.42s]
+[0m15:13:51  
+[0m15:13:51  Finished running 2 project hooks, 63 data tests in 0 hours 0 minutes and 13.17 seconds (13.17s).
+[0m15:13:51  
+[0m15:13:51  [31mCompleted with 63 errors, 0 partial successes, and 0 warnings:[0m
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_between_dim_geolocation_longitude__180___180 (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_geolocation was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_6175d1707147d62c49515644e9e5fee8.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_between_fact_order_items_freight_value__0 (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_4880bc9a41f33a49543e105df7d4aecd.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_between_dim_geolocation_latitude__90___90 (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_geolocation was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_00f314457047540d47e2326f4e39c351.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_between_fact_order_items_delivery_time_days__365__0 (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_9c534c327da45b68949dfd9f0c6f868f.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_between_fact_order_items_price__0 (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_2838f2c98de953af6804dff06c4c38d8.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_between_fact_order_items_review_score__5__1 (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_611c54f19dbbe78c123df327a87a71f9.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_in_set_dim_dates_day_of_week__Monday__Tuesday__Wednesday__Thursday__Friday__Saturday__Sunday (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_dates was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_1fd35fc1644f197540c9ea46d86f90e2.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_between_stg_order_reviews_review_score__5__1 (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_order_reviews was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/dbt_expectations_expect_column_902ed4c85fd72a94a920322e6218fd08.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_in_set_dim_payments_payment_type__credit_card__debit_card__boleto__voucher__not_defined (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_payments was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_9bb61aa3fade4a86040b2ed53ddf6ffc.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_in_set_dim_dates_month_name__January__February__March__April__May__June__July__August__September__October__November__December (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_dates was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_95d6c9be60c4e7557acfd4907918b895.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_of_type_fact_order_items_price__numeric (models/marts/schema.yml)
+  Syntax error: Unexpected ")" at [13:5]
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_4e238f2026282345d7a055105455ff77.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_of_type_fact_order_items_freight_value__numeric (models/marts/schema.yml)
+  Syntax error: Unexpected ")" at [13:5]
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_84bafb9900210eaf62084bb83ff1c9b9.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_utils_unique_combination_of_columns_fact_order_items_order_id__order_item_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_utils_unique_combination_o_b4bc5eaf204450ea99a055b321917ef3.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_utils_unique_combination_of_columns_stg_order_payments_order_id__payment_sequential (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_order_payments was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/dbt_utils_unique_combination_o_24856d55820a2af714e667b8ed494b01.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_utils_unique_combination_of_columns_stg_order_items_order_id__order_item_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/dbt_utils_unique_combination_o_be64677e0527fa82b538114b23c2e0e4.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_of_type_stg_orders_order_purchase_timestamp__timestamp (models/staging/stg_schema.yml)
+  Syntax error: Unexpected ")" at [13:5]
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/dbt_expectations_expect_column_e2a7d0738aefef5c790ffd6420d17098.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_dim_customers_customer_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_customers was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_dim_customers_customer_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_dim_dates_date_key (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_dates was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_dim_dates_date_key.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_dim_payments_payment_type_key (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_payments was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_dim_payments_payment_type_key.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_dim_geolocation_geolocation_zip_code_prefix (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_geolocation was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_dim_geolocation_geolocation_zip_code_prefix.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_dim_products_product_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_products was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_dim_products_product_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_fact_order_items_order_date_key (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_fact_order_items_order_date_key.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_dim_sellers_seller_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_sellers was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_dim_sellers_seller_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_fact_order_items_customer_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_fact_order_items_customer_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_fact_order_items_order_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_fact_order_items_order_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_fact_order_items_payment_type_key (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_fact_order_items_payment_type_key.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_fact_order_items_order_item_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_fact_order_items_order_item_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_fact_order_items_order_item_key (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_fact_order_items_order_item_key.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_fact_order_items_price (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_fact_order_items_price.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_fact_order_items_product_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_fact_order_items_product_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_fact_order_items_seller_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_fact_order_items_seller_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_customers_customer_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_customers was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_customers_customer_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_customers_customer_unique_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_customers was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_customers_customer_unique_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_customers_customer_zip_code_prefix (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_customers was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_customers_customer_zip_code_prefix.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_geolocation_geolocation_zip_code_prefix (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_geolocation was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_geolocation_geolocation_zip_code_prefix.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_order_items_order_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_order_items_order_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_order_items_order_item_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_order_items_order_item_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_order_items_product_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_order_items_product_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_order_items_seller_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_order_items_seller_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_order_reviews_order_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_order_reviews was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_order_reviews_order_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_order_reviews_review_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_order_reviews was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_order_reviews_review_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_order_reviews_review_score (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_order_reviews was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_order_reviews_review_score.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_orders_order_purchase_timestamp (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_orders was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_orders_order_purchase_timestamp.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_orders_order_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_orders was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_orders_order_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_products_product_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_products was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_products_product_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_sellers_seller_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_sellers was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_sellers_seller_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test relationships_dim_customers_geolocation_zip_code_prefix__geolocation_zip_code_prefix__ref_dim_geolocation_ (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_customers was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/relationships_dim_customers_d9dbc3756ac42d2038a2db8d1f07b440.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_orders_customer_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_orders was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_orders_customer_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test relationships_dim_sellers_geolocation_zip_code_prefix__geolocation_zip_code_prefix__ref_dim_geolocation_ (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_geolocation was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/relationships_dim_sellers_4ee1c4ad04125a540b0b4ba99a5f7684.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test relationships_fact_order_items_customer_id__customer_id__ref_dim_customers_ (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_customers was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/relationships_fact_order_items_441a6080d53b108d78db0664a6680efc.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test relationships_fact_order_items_product_id__product_id__ref_dim_products_ (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_products was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/relationships_fact_order_items_659a11a96ff0cabfd26ac172facc0eec.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test relationships_fact_order_items_payment_type_key__payment_type_key__ref_dim_payments_ (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_payments was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/relationships_fact_order_items_a27dfe0daea7a584101a577abc5c2156.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test unique_dim_customers_customer_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_customers was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/unique_dim_customers_customer_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test relationships_fact_order_items_seller_id__seller_id__ref_dim_sellers_ (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_sellers was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/relationships_fact_order_items_9a9532dcf5fbd81824264dbef8eac61e.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test unique_dim_dates_date_key (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_dates was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/unique_dim_dates_date_key.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test unique_dim_payments_payment_type_key (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_payments was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/unique_dim_payments_payment_type_key.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test unique_dim_geolocation_geolocation_zip_code_prefix (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_geolocation was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/unique_dim_geolocation_geolocation_zip_code_prefix.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test unique_dim_products_product_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_products was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/unique_dim_products_product_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test unique_dim_sellers_seller_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_sellers was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/unique_dim_sellers_seller_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test unique_stg_products_product_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_products was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/unique_stg_products_product_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test unique_fact_order_items_order_item_key (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/unique_fact_order_items_order_item_key.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test unique_stg_customers_customer_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_customers was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/unique_stg_customers_customer_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test unique_stg_sellers_seller_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_sellers was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/unique_stg_sellers_seller_id.sql
+[0m15:13:51  
+[0m15:13:51  Done. PASS=2 WARN=0 ERROR=63 SKIP=0 TOTAL=65
+[0m
+[32m2025-09-10 23:13:53 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - eecf634f-24d0-4eae-9b46-2f6586070da6 - 291460 - pipeline_dbt_test - STEP_FAILURE - Execution of step "pipeline_dbt_test" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "pipeline_dbt_test"::
+
+Exception: [0m15:13:34  Running with dbt=1.9.6
+[0m15:13:37  Registered adapter: bigquery=1.9.2
+[0m15:13:38  Found 46 models, 1 seed, 2 operations, 63 data tests, 9 sources, 1678 macros
+[0m15:13:38  
+[0m15:13:38  Concurrency: 4 threads (target='dev')
+[0m15:13:38  
+[0m15:13:38  Elementary: Runtime data: {"config": {}, "dbt_version": "1.9.6", "elementary_version": "0.19.4", "database": "calm-analogy-468216-e0", "schema": "m2_prod_elementary"}
+[0m15:13:39  1 of 1 START hook: elementary.on-run-start.0 ................................... [RUN]
+[0m15:13:39  1 of 1 OK hook: elementary.on-run-start.0 ...................................... [[32mOK[0m in 0.68s]
+[0m15:13:39  
+[0m15:13:39  1 of 63 START test dbt_expectations_expect_column_values_to_be_between_dim_geolocation_latitude__90___90  [RUN]
+[0m15:13:39  2 of 63 START test dbt_expectations_expect_column_values_to_be_between_dim_geolocation_longitude__180___180  [RUN]
+[0m15:13:39  3 of 63 START test dbt_expectations_expect_column_values_to_be_between_fact_order_items_delivery_time_days__365__0  [RUN]
+[0m15:13:39  4 of 63 START test dbt_expectations_expect_column_values_to_be_between_fact_order_items_freight_value__0  [RUN]
+[0m15:13:39  [[33mWARNING[0m]: Installed package 'elementary' is overriding the built-in
+materialization 'test'. Overrides of built-in materializations from installed
+packages will be deprecated in future versions of dbt. For more information:
+https://docs.getdbt.com/reference/global-configs/legacy-behaviors
+[0m15:13:39  [[33mWARNING[0m]: Installed package 'elementary' is overriding the built-in
+materialization 'test'. Overrides of built-in materializations from installed
+packages will be deprecated in future versions of dbt. For more information:
+https://docs.getdbt.com/reference/global-configs/legacy-behaviors
+[0m15:13:39  [[33mWARNING[0m]: Installed package 'elementary' is overriding the built-in
+materialization 'test'. Overrides of built-in materializations from installed
+packages will be deprecated in future versions of dbt. For more information:
+https://docs.getdbt.com/reference/global-configs/legacy-behaviors
+[0m15:13:39  [[33mWARNING[0m]: Installed package 'elementary' is overriding the built-in
+materialization 'test'. Overrides of built-in materializations from installed
+packages will be deprecated in future versions of dbt. For more information:
+https://docs.getdbt.com/reference/global-configs/legacy-behaviors
+[0m15:13:40  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:42fb701a-bd14-4f99-aaaa-218590c50c61&page=queryresults
+[0m15:13:40  2 of 63 ERROR dbt_expectations_expect_column_values_to_be_between_dim_geolocation_longitude__180___180  [[31mERROR[0m in 1.02s]
+[0m15:13:40  5 of 63 START test dbt_expectations_expect_column_values_to_be_between_fact_order_items_price__0  [RUN]
+[0m15:13:40  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:be186b69-e62f-47ea-90cc-7fc3e8293d5b&page=queryresults
+[0m15:13:40  4 of 63 ERROR dbt_expectations_expect_column_values_to_be_between_fact_order_items_freight_value__0  [[31mERROR[0m in 1.04s]
+[0m15:13:40  6 of 63 START test dbt_expectations_expect_column_values_to_be_between_fact_order_items_review_score__5__1  [RUN]
+[0m15:13:40  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:9abbbe16-5ac1-41b1-836d-7134350b372d&page=queryresults
+[0m15:13:40  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:52ef3b30-2f43-4543-baab-6020873303a3&page=queryresults
+[0m15:13:40  1 of 63 ERROR dbt_expectations_expect_column_values_to_be_between_dim_geolocation_latitude__90___90  [[31mERROR[0m in 1.15s]
+[0m15:13:40  3 of 63 ERROR dbt_expectations_expect_column_values_to_be_between_fact_order_items_delivery_time_days__365__0  [[31mERROR[0m in 1.15s]
+[0m15:13:40  7 of 63 START test dbt_expectations_expect_column_values_to_be_between_stg_order_reviews_review_score__5__1  [RUN]
+[0m15:13:40  8 of 63 START test dbt_expectations_expect_column_values_to_be_in_set_dim_dates_day_of_week__Monday__Tuesday__Wednesday__Thursday__Friday__Saturday__Sunday  [RUN]
+[0m15:13:41  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:cc81d882-b4bb-415b-aa8c-c805ea190e00&page=queryresults
+[0m15:13:41  5 of 63 ERROR dbt_expectations_expect_column_values_to_be_between_fact_order_items_price__0  [[31mERROR[0m in 0.71s]
+[0m15:13:41  9 of 63 START test dbt_expectations_expect_column_values_to_be_in_set_dim_dates_month_name__January__February__March__April__May__June__July__August__September__October__November__December  [RUN]
+[0m15:13:41  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:230d6472-ae9f-46bd-a5eb-95e18c574363&page=queryresults
+[0m15:13:41  6 of 63 ERROR dbt_expectations_expect_column_values_to_be_between_fact_order_items_review_score__5__1  [[31mERROR[0m in 0.73s]
+[0m15:13:41  10 of 63 START test dbt_expectations_expect_column_values_to_be_in_set_dim_payments_payment_type__credit_card__debit_card__boleto__voucher__not_defined  [RUN]
+[0m15:13:41  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:64a26ddc-a541-48d6-83ab-21029c911f98&page=queryresults
+[0m15:13:41  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:e2b68d87-6655-40d3-af7c-e101ed91defd&page=queryresults
+[0m15:13:41  8 of 63 ERROR dbt_expectations_expect_column_values_to_be_in_set_dim_dates_day_of_week__Monday__Tuesday__Wednesday__Thursday__Friday__Saturday__Sunday  [[31mERROR[0m in 0.71s]
+[0m15:13:41  7 of 63 ERROR dbt_expectations_expect_column_values_to_be_between_stg_order_reviews_review_score__5__1  [[31mERROR[0m in 0.71s]
+[0m15:13:41  11 of 63 START test dbt_expectations_expect_column_values_to_be_of_type_fact_order_items_freight_value__numeric  [RUN]
+[0m15:13:41  12 of 63 START test dbt_expectations_expect_column_values_to_be_of_type_fact_order_items_price__numeric  [RUN]
+[0m15:13:41  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:de39fbde-6f15-4b76-a1a1-d1d642974299&page=queryresults
+[0m15:13:41  10 of 63 ERROR dbt_expectations_expect_column_values_to_be_in_set_dim_payments_payment_type__credit_card__debit_card__boleto__voucher__not_defined  [[31mERROR[0m in 0.77s]
+[0m15:13:41  13 of 63 START test dbt_expectations_expect_column_values_to_be_of_type_stg_orders_order_purchase_timestamp__timestamp  [RUN]
+[0m15:13:41  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:ca17a3f7-83b1-4899-b328-d3398e766703&page=queryresults
+[0m15:13:41  9 of 63 ERROR dbt_expectations_expect_column_values_to_be_in_set_dim_dates_month_name__January__February__March__April__May__June__July__August__September__October__November__December  [[31mERROR[0m in 0.86s]
+[0m15:13:41  14 of 63 START test dbt_utils_unique_combination_of_columns_fact_order_items_order_id__order_item_id  [RUN]
+[0m15:13:41  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:e3baf60c-a4ac-4de0-9544-af3565f95595&page=queryresults
+[0m15:13:41  12 of 63 ERROR dbt_expectations_expect_column_values_to_be_of_type_fact_order_items_price__numeric  [[31mERROR[0m in 0.80s]
+[0m15:13:41  15 of 63 START test dbt_utils_unique_combination_of_columns_stg_order_items_order_id__order_item_id  [RUN]
+[0m15:13:41  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:5bcc9e47-8462-4c77-8d48-bc4f3236d34c&page=queryresults
+[0m15:13:42  11 of 63 ERROR dbt_expectations_expect_column_values_to_be_of_type_fact_order_items_freight_value__numeric  [[31mERROR[0m in 0.83s]
+[0m15:13:42  16 of 63 START test dbt_utils_unique_combination_of_columns_stg_order_payments_order_id__payment_sequential  [RUN]
+[0m15:13:42  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:7b195941-37b1-4ed1-8d3c-ac927d4b366f&page=queryresults
+[0m15:13:42  14 of 63 ERROR dbt_utils_unique_combination_of_columns_fact_order_items_order_id__order_item_id  [[31mERROR[0m in 0.57s]
+[0m15:13:42  17 of 63 START test not_null_dim_customers_customer_id ......................... [RUN]
+[0m15:13:42  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:26059066-6a4f-40de-8498-392f448e4b39&page=queryresults
+[0m15:13:42  16 of 63 ERROR dbt_utils_unique_combination_of_columns_stg_order_payments_order_id__payment_sequential  [[31mERROR[0m in 0.61s]
+[0m15:13:42  18 of 63 START test not_null_dim_dates_date_key ................................ [RUN]
+[0m15:13:42  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:df974b5f-92cb-4050-aeff-8f3a169391e0&page=queryresults
+[0m15:13:42  15 of 63 ERROR dbt_utils_unique_combination_of_columns_stg_order_items_order_id__order_item_id  [[31mERROR[0m in 0.68s]
+[0m15:13:42  19 of 63 START test not_null_dim_geolocation_geolocation_zip_code_prefix ....... [RUN]
+[0m15:13:42  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:a1f72a27-363f-4dad-b6e4-7a9aa86d854c&page=queryresults
+[0m15:13:42  13 of 63 ERROR dbt_expectations_expect_column_values_to_be_of_type_stg_orders_order_purchase_timestamp__timestamp  [[31mERROR[0m in 0.93s]
+[0m15:13:42  20 of 63 START test not_null_dim_payments_payment_type_key ..................... [RUN]
+[0m15:13:43  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:b6f97ab1-3431-461e-a740-6d150472c65e&page=queryresults
+[0m15:13:43  17 of 63 ERROR not_null_dim_customers_customer_id .............................. [[31mERROR[0m in 0.62s]
+[0m15:13:43  21 of 63 START test not_null_dim_products_product_id ........................... [RUN]
+[0m15:13:43  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:8f76c34f-a19b-4ac6-8e5e-ad29b2cc0f51&page=queryresults
+[0m15:13:43  18 of 63 ERROR not_null_dim_dates_date_key ..................................... [[31mERROR[0m in 0.65s]
+[0m15:13:43  22 of 63 START test not_null_dim_sellers_seller_id ............................. [RUN]
+[0m15:13:43  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:275a696c-36ca-44f2-a4fa-9991f093c856&page=queryresults
+[0m15:13:43  20 of 63 ERROR not_null_dim_payments_payment_type_key .......................... [[31mERROR[0m in 0.54s]
+[0m15:13:43  23 of 63 START test not_null_fact_order_items_customer_id ...................... [RUN]
+[0m15:13:43  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:c0c1c555-f0a1-42d9-abd5-f0927aef62e6&page=queryresults
+[0m15:13:43  19 of 63 ERROR not_null_dim_geolocation_geolocation_zip_code_prefix ............ [[31mERROR[0m in 0.67s]
+[0m15:13:43  24 of 63 START test not_null_fact_order_items_order_date_key ................... [RUN]
+[0m15:13:43  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:60216cd4-4d7e-4c1b-b6fa-6452fb8529e2&page=queryresults
+[0m15:13:43  21 of 63 ERROR not_null_dim_products_product_id ................................ [[31mERROR[0m in 0.63s]
+[0m15:13:43  25 of 63 START test not_null_fact_order_items_order_id ......................... [RUN]
+[0m15:13:43  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:426d74c1-782e-4577-a091-6f388114bc21&page=queryresults
+[0m15:13:43  24 of 63 ERROR not_null_fact_order_items_order_date_key ........................ [[31mERROR[0m in 0.63s]
+[0m15:13:43  26 of 63 START test not_null_fact_order_items_order_item_id .................... [RUN]
+[0m15:13:43  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:75bd7f17-1e42-44da-be3f-bedf14df5e49&page=queryresults
+[0m15:13:44  22 of 63 ERROR not_null_dim_sellers_seller_id .................................. [[31mERROR[0m in 0.74s]
+[0m15:13:44  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:d3bdd3d4-e681-46a7-8a3e-32fd461ad6ce&page=queryresults
+[0m15:13:44  27 of 63 START test not_null_fact_order_items_order_item_key ................... [RUN]
+[0m15:13:44  23 of 63 ERROR not_null_fact_order_items_customer_id ........................... [[31mERROR[0m in 0.72s]
+[0m15:13:44  28 of 63 START test not_null_fact_order_items_payment_type_key ................. [RUN]
+[0m15:13:44  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:1e4c5640-f0f7-4e9b-a71e-cd56739dfff7&page=queryresults
+[0m15:13:44  25 of 63 ERROR not_null_fact_order_items_order_id .............................. [[31mERROR[0m in 0.59s]
+[0m15:13:44  29 of 63 START test not_null_fact_order_items_price ............................ [RUN]
+[0m15:13:44  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:aff8c1fc-838a-4674-afb5-525d3a60f8bb&page=queryresults
+[0m15:13:44  28 of 63 ERROR not_null_fact_order_items_payment_type_key ...................... [[31mERROR[0m in 0.56s]
+[0m15:13:44  30 of 63 START test not_null_fact_order_items_product_id ....................... [RUN]
+[0m15:13:44  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:0cb05ecb-d9bb-49aa-a451-d9f1f11cac8d&page=queryresults
+[0m15:13:44  26 of 63 ERROR not_null_fact_order_items_order_item_id ......................... [[31mERROR[0m in 0.70s]
+[0m15:13:44  31 of 63 START test not_null_fact_order_items_seller_id ........................ [RUN]
+[0m15:13:44  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:220751e3-c1b5-4ec5-9094-92b4d618d2a6&page=queryresults
+[0m15:13:44  27 of 63 ERROR not_null_fact_order_items_order_item_key ........................ [[31mERROR[0m in 0.81s]
+[0m15:13:44  32 of 63 START test not_null_stg_customers_customer_id ......................... [RUN]
+[0m15:13:44  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:aa317ba3-614c-4033-b8be-a99544d32672&page=queryresults
+[0m15:13:44  29 of 63 ERROR not_null_fact_order_items_price ................................. [[31mERROR[0m in 0.65s]
+[0m15:13:44  33 of 63 START test not_null_stg_customers_customer_unique_id .................. [RUN]
+[0m15:13:45  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:a6fe38b9-299a-44d6-b1ff-b1e9223ea949&page=queryresults
+[0m15:13:45  30 of 63 ERROR not_null_fact_order_items_product_id ............................ [[31mERROR[0m in 0.63s]
+[0m15:13:45  34 of 63 START test not_null_stg_customers_customer_zip_code_prefix ............ [RUN]
+[0m15:13:45  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:f6ff6be0-a153-48ad-8f7f-523bd28ac371&page=queryresults
+[0m15:13:45  31 of 63 ERROR not_null_fact_order_items_seller_id ............................. [[31mERROR[0m in 0.63s]
+[0m15:13:45  35 of 63 START test not_null_stg_geolocation_geolocation_zip_code_prefix ....... [RUN]
+[0m15:13:45  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:10a184a6-4553-4c4f-bb8d-42be4d1c726e&page=queryresults
+[0m15:13:45  32 of 63 ERROR not_null_stg_customers_customer_id .............................. [[31mERROR[0m in 0.52s]
+[0m15:13:45  36 of 63 START test not_null_stg_order_items_order_id .......................... [RUN]
+[0m15:13:45  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:3e07fce2-c4e6-4cd0-ad75-8a1b825af650&page=queryresults
+[0m15:13:45  33 of 63 ERROR not_null_stg_customers_customer_unique_id ....................... [[31mERROR[0m in 0.53s]
+[0m15:13:45  37 of 63 START test not_null_stg_order_items_order_item_id ..................... [RUN]
+[0m15:13:45  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:a8716642-f2a5-4f2a-8875-0c6143c6e0fb&page=queryresults
+[0m15:13:45  34 of 63 ERROR not_null_stg_customers_customer_zip_code_prefix ................. [[31mERROR[0m in 0.61s]
+[0m15:13:45  38 of 63 START test not_null_stg_order_items_product_id ........................ [RUN]
+[0m15:13:45  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:6cdcc86d-921f-40ac-afe0-79636066ede3&page=queryresults
+[0m15:13:45  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:75dcab42-68f5-48db-bc7f-e758537408c3&page=queryresults
+[0m15:13:45  35 of 63 ERROR not_null_stg_geolocation_geolocation_zip_code_prefix ............ [[31mERROR[0m in 0.61s]
+[0m15:13:45  36 of 63 ERROR not_null_stg_order_items_order_id ............................... [[31mERROR[0m in 0.54s]
+[0m15:13:45  39 of 63 START test not_null_stg_order_items_seller_id ......................... [RUN]
+[0m15:13:45  40 of 63 START test not_null_stg_order_reviews_order_id ........................ [RUN]
+[0m15:13:46  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:cde6bfc9-16f5-409b-8535-ba0d0610e534&page=queryresults
+[0m15:13:46  37 of 63 ERROR not_null_stg_order_items_order_item_id .......................... [[31mERROR[0m in 0.81s]
+[0m15:13:46  41 of 63 START test not_null_stg_order_reviews_review_id ....................... [RUN]
+[0m15:13:46  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:6d751225-6edf-47a0-92cd-3a8a08b564df&page=queryresults
+[0m15:13:46  38 of 63 ERROR not_null_stg_order_items_product_id ............................. [[31mERROR[0m in 0.82s]
+[0m15:13:46  42 of 63 START test not_null_stg_order_reviews_review_score .................... [RUN]
+[0m15:13:46  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:d165feeb-ac87-415e-b07d-c61ae1042477&page=queryresults
+[0m15:13:46  39 of 63 ERROR not_null_stg_order_items_seller_id .............................. [[31mERROR[0m in 0.82s]
+[0m15:13:46  43 of 63 START test not_null_stg_orders_customer_id ............................ [RUN]
+[0m15:13:46  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:08f7ac9d-8789-4984-b044-53899bc7ac00&page=queryresults
+[0m15:13:46  40 of 63 ERROR not_null_stg_order_reviews_order_id ............................. [[31mERROR[0m in 0.91s]
+[0m15:13:46  44 of 63 START test not_null_stg_orders_order_id ............................... [RUN]
+[0m15:13:46  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:39bec06a-e777-4d39-98c4-68a573539edb&page=queryresults
+[0m15:13:46  41 of 63 ERROR not_null_stg_order_reviews_review_id ............................ [[31mERROR[0m in 0.64s]
+[0m15:13:46  45 of 63 START test not_null_stg_orders_order_purchase_timestamp ............... [RUN]
+[0m15:13:47  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:14cb1fc3-337b-4e49-9efa-7252bea6241e&page=queryresults
+[0m15:13:47  42 of 63 ERROR not_null_stg_order_reviews_review_score ......................... [[31mERROR[0m in 0.57s]
+[0m15:13:47  46 of 63 START test not_null_stg_products_product_id ........................... [RUN]
+[0m15:13:47  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:a4da006b-912b-434a-86d7-52e0a63d58fd&page=queryresults
+[0m15:13:47  45 of 63 ERROR not_null_stg_orders_order_purchase_timestamp .................... [[31mERROR[0m in 0.52s]
+[0m15:13:47  47 of 63 START test not_null_stg_sellers_seller_id ............................. [RUN]
+[0m15:13:47  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:a395d59c-8e0e-4cf3-87e3-dc2a635c3f84&page=queryresults
+[0m15:13:47  44 of 63 ERROR not_null_stg_orders_order_id .................................... [[31mERROR[0m in 0.65s]
+[0m15:13:47  48 of 63 START test relationships_dim_customers_geolocation_zip_code_prefix__geolocation_zip_code_prefix__ref_dim_geolocation_  [RUN]
+[0m15:13:47  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:5f8ea2c4-8838-489f-a589-32b64ffaaefc&page=queryresults
+[0m15:13:47  46 of 63 ERROR not_null_stg_products_product_id ................................ [[31mERROR[0m in 0.57s]
+[0m15:13:47  49 of 63 START test relationships_dim_sellers_geolocation_zip_code_prefix__geolocation_zip_code_prefix__ref_dim_geolocation_  [RUN]
+[0m15:13:48  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:c12c6a04-66fb-485d-8581-6499b2ca048b&page=queryresults
+[0m15:13:48  47 of 63 ERROR not_null_stg_sellers_seller_id .................................. [[31mERROR[0m in 0.57s]
+[0m15:13:48  50 of 63 START test relationships_fact_order_items_customer_id__customer_id__ref_dim_customers_  [RUN]
+[0m15:13:48  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:eaae40f5-0039-48fb-8b5a-2960367e768b&page=queryresults
+[0m15:13:48  48 of 63 ERROR relationships_dim_customers_geolocation_zip_code_prefix__geolocation_zip_code_prefix__ref_dim_geolocation_  [[31mERROR[0m in 0.68s]
+[0m15:13:48  51 of 63 START test relationships_fact_order_items_payment_type_key__payment_type_key__ref_dim_payments_  [RUN]
+[0m15:13:48  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:1ac34b82-5265-44a4-8847-faa33f870281&page=queryresults
+[0m15:13:48  43 of 63 ERROR not_null_stg_orders_customer_id ................................. [[31mERROR[0m in 1.61s]
+[0m15:13:48  52 of 63 START test relationships_fact_order_items_product_id__product_id__ref_dim_products_  [RUN]
+[0m15:13:48  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:4781be53-85fe-4cb8-ae64-0effea7c13f3&page=queryresults
+[0m15:13:48  49 of 63 ERROR relationships_dim_sellers_geolocation_zip_code_prefix__geolocation_zip_code_prefix__ref_dim_geolocation_  [[31mERROR[0m in 0.65s]
+[0m15:13:48  53 of 63 START test relationships_fact_order_items_seller_id__seller_id__ref_dim_sellers_  [RUN]
+[0m15:13:48  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:202f7d51-3545-4788-8926-8e130d1c3541&page=queryresults
+[0m15:13:48  50 of 63 ERROR relationships_fact_order_items_customer_id__customer_id__ref_dim_customers_  [[31mERROR[0m in 0.60s]
+[0m15:13:48  54 of 63 START test unique_dim_customers_customer_id ........................... [RUN]
+[0m15:13:48  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:a485c80e-b56f-4f6b-9eee-edbb53a4b624&page=queryresults
+[0m15:13:48  52 of 63 ERROR relationships_fact_order_items_product_id__product_id__ref_dim_products_  [[31mERROR[0m in 0.59s]
+[0m15:13:48  55 of 63 START test unique_dim_dates_date_key .................................. [RUN]
+[0m15:13:49  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:f12836d1-6ecd-4ffb-b711-110c5b02f706&page=queryresults
+[0m15:13:49  51 of 63 ERROR relationships_fact_order_items_payment_type_key__payment_type_key__ref_dim_payments_  [[31mERROR[0m in 0.84s]
+[0m15:13:49  56 of 63 START test unique_dim_geolocation_geolocation_zip_code_prefix ......... [RUN]
+[0m15:13:49  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:c5661087-d248-497c-b67d-4c938bfe5b82&page=queryresults
+[0m15:13:49  54 of 63 ERROR unique_dim_customers_customer_id ................................ [[31mERROR[0m in 0.52s]
+[0m15:13:49  57 of 63 START test unique_dim_payments_payment_type_key ....................... [RUN]
+[0m15:13:49  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:77319e56-d2ef-4cbf-8ef0-085f7054aaf0&page=queryresults
+[0m15:13:49  53 of 63 ERROR relationships_fact_order_items_seller_id__seller_id__ref_dim_sellers_  [[31mERROR[0m in 0.72s]
+[0m15:13:49  58 of 63 START test unique_dim_products_product_id ............................. [RUN]
+[0m15:13:49  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:888003a2-7b90-4088-bb8d-ef004deea2f3&page=queryresults
+[0m15:13:49  55 of 63 ERROR unique_dim_dates_date_key ....................................... [[31mERROR[0m in 0.65s]
+[0m15:13:49  59 of 63 START test unique_dim_sellers_seller_id ............................... [RUN]
+[0m15:13:49  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:ba790e3e-bb52-41a7-8961-b15ac714f616&page=queryresults
+[0m15:13:49  57 of 63 ERROR unique_dim_payments_payment_type_key ............................ [[31mERROR[0m in 0.58s]
+[0m15:13:49  60 of 63 START test unique_fact_order_items_order_item_key ..................... [RUN]
+[0m15:13:49  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:d64343b0-0397-469b-87db-2eaf661bbdd6&page=queryresults
+[0m15:13:49  56 of 63 ERROR unique_dim_geolocation_geolocation_zip_code_prefix .............. [[31mERROR[0m in 0.77s]
+[0m15:13:49  61 of 63 START test unique_stg_customers_customer_id ........................... [RUN]
+[0m15:13:49  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:35b756eb-6245-442f-b8d2-25a98a5865f6&page=queryresults
+[0m15:13:49  58 of 63 ERROR unique_dim_products_product_id .................................. [[31mERROR[0m in 0.62s]
+[0m15:13:49  62 of 63 START test unique_stg_products_product_id ............................. [RUN]
+[0m15:13:50  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:22e8ad11-d5ce-4660-8af4-5691499f5010&page=queryresults
+[0m15:13:50  59 of 63 ERROR unique_dim_sellers_seller_id .................................... [[31mERROR[0m in 0.51s]
+[0m15:13:50  63 of 63 START test unique_stg_sellers_seller_id ............................... [RUN]
+[0m15:13:50  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:d6a81eb5-1402-45c7-b50a-20d094e877a8&page=queryresults
+[0m15:13:50  62 of 63 ERROR unique_stg_products_product_id .................................. [[31mERROR[0m in 0.55s]
+[0m15:13:50  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:f49ade59-e58a-4b7e-8765-46a650c2c8cb&page=queryresults
+[0m15:13:50  60 of 63 ERROR unique_fact_order_items_order_item_key .......................... [[31mERROR[0m in 0.71s]
+[0m15:13:50  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:4db5d5f5-58b4-41a0-8b8d-56560060d44b&page=queryresults
+[0m15:13:50  61 of 63 ERROR unique_stg_customers_customer_id ................................ [[31mERROR[0m in 0.66s]
+[0m15:13:50  BigQuery adapter: https://console.cloud.google.com/bigquery?project=calm-analogy-468216-e0&j=bq:US:63307375-def3-4387-be6e-3fe6c3103b43&page=queryresults
+[0m15:13:50  63 of 63 ERROR unique_stg_sellers_seller_id .................................... [[31mERROR[0m in 0.64s]
+[0m15:13:50  
+[0m15:13:51  Missing Elementary models in 'calm-analogy-468216-e0.m2_prod_elementary'. Please run 'dbt run -s elementary --target dev'.
+[0m15:13:51  1 of 1 START hook: elementary.on-run-end.0 ..................................... [RUN]
+[0m15:13:51  1 of 1 OK hook: elementary.on-run-end.0 ........................................ [[32mOK[0m in 0.42s]
+[0m15:13:51  
+[0m15:13:51  Finished running 2 project hooks, 63 data tests in 0 hours 0 minutes and 13.17 seconds (13.17s).
+[0m15:13:51  
+[0m15:13:51  [31mCompleted with 63 errors, 0 partial successes, and 0 warnings:[0m
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_between_dim_geolocation_longitude__180___180 (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_geolocation was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_6175d1707147d62c49515644e9e5fee8.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_between_fact_order_items_freight_value__0 (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_4880bc9a41f33a49543e105df7d4aecd.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_between_dim_geolocation_latitude__90___90 (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_geolocation was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_00f314457047540d47e2326f4e39c351.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_between_fact_order_items_delivery_time_days__365__0 (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_9c534c327da45b68949dfd9f0c6f868f.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_between_fact_order_items_price__0 (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_2838f2c98de953af6804dff06c4c38d8.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_between_fact_order_items_review_score__5__1 (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_611c54f19dbbe78c123df327a87a71f9.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_in_set_dim_dates_day_of_week__Monday__Tuesday__Wednesday__Thursday__Friday__Saturday__Sunday (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_dates was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_1fd35fc1644f197540c9ea46d86f90e2.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_between_stg_order_reviews_review_score__5__1 (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_order_reviews was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/dbt_expectations_expect_column_902ed4c85fd72a94a920322e6218fd08.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_in_set_dim_payments_payment_type__credit_card__debit_card__boleto__voucher__not_defined (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_payments was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_9bb61aa3fade4a86040b2ed53ddf6ffc.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_in_set_dim_dates_month_name__January__February__March__April__May__June__July__August__September__October__November__December (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_dates was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_95d6c9be60c4e7557acfd4907918b895.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_of_type_fact_order_items_price__numeric (models/marts/schema.yml)
+  Syntax error: Unexpected ")" at [13:5]
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_4e238f2026282345d7a055105455ff77.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_of_type_fact_order_items_freight_value__numeric (models/marts/schema.yml)
+  Syntax error: Unexpected ")" at [13:5]
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_expectations_expect_column_84bafb9900210eaf62084bb83ff1c9b9.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_utils_unique_combination_of_columns_fact_order_items_order_id__order_item_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/dbt_utils_unique_combination_o_b4bc5eaf204450ea99a055b321917ef3.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_utils_unique_combination_of_columns_stg_order_payments_order_id__payment_sequential (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_order_payments was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/dbt_utils_unique_combination_o_24856d55820a2af714e667b8ed494b01.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_utils_unique_combination_of_columns_stg_order_items_order_id__order_item_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/dbt_utils_unique_combination_o_be64677e0527fa82b538114b23c2e0e4.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test dbt_expectations_expect_column_values_to_be_of_type_stg_orders_order_purchase_timestamp__timestamp (models/staging/stg_schema.yml)
+  Syntax error: Unexpected ")" at [13:5]
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/dbt_expectations_expect_column_e2a7d0738aefef5c790ffd6420d17098.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_dim_customers_customer_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_customers was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_dim_customers_customer_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_dim_dates_date_key (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_dates was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_dim_dates_date_key.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_dim_payments_payment_type_key (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_payments was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_dim_payments_payment_type_key.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_dim_geolocation_geolocation_zip_code_prefix (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_geolocation was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_dim_geolocation_geolocation_zip_code_prefix.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_dim_products_product_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_products was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_dim_products_product_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_fact_order_items_order_date_key (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_fact_order_items_order_date_key.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_dim_sellers_seller_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_sellers was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_dim_sellers_seller_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_fact_order_items_customer_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_fact_order_items_customer_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_fact_order_items_order_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_fact_order_items_order_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_fact_order_items_payment_type_key (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_fact_order_items_payment_type_key.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_fact_order_items_order_item_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_fact_order_items_order_item_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_fact_order_items_order_item_key (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_fact_order_items_order_item_key.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_fact_order_items_price (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_fact_order_items_price.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_fact_order_items_product_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_fact_order_items_product_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_fact_order_items_seller_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/not_null_fact_order_items_seller_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_customers_customer_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_customers was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_customers_customer_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_customers_customer_unique_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_customers was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_customers_customer_unique_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_customers_customer_zip_code_prefix (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_customers was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_customers_customer_zip_code_prefix.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_geolocation_geolocation_zip_code_prefix (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_geolocation was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_geolocation_geolocation_zip_code_prefix.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_order_items_order_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_order_items_order_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_order_items_order_item_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_order_items_order_item_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_order_items_product_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_order_items_product_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_order_items_seller_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_order_items_seller_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_order_reviews_order_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_order_reviews was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_order_reviews_order_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_order_reviews_review_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_order_reviews was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_order_reviews_review_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_order_reviews_review_score (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_order_reviews was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_order_reviews_review_score.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_orders_order_purchase_timestamp (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_orders was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_orders_order_purchase_timestamp.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_orders_order_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_orders was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_orders_order_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_products_product_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_products was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_products_product_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_sellers_seller_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_sellers was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_sellers_seller_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test relationships_dim_customers_geolocation_zip_code_prefix__geolocation_zip_code_prefix__ref_dim_geolocation_ (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_customers was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/relationships_dim_customers_d9dbc3756ac42d2038a2db8d1f07b440.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test not_null_stg_orders_customer_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_orders was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/not_null_stg_orders_customer_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test relationships_dim_sellers_geolocation_zip_code_prefix__geolocation_zip_code_prefix__ref_dim_geolocation_ (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_geolocation was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/relationships_dim_sellers_4ee1c4ad04125a540b0b4ba99a5f7684.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test relationships_fact_order_items_customer_id__customer_id__ref_dim_customers_ (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_customers was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/relationships_fact_order_items_441a6080d53b108d78db0664a6680efc.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test relationships_fact_order_items_product_id__product_id__ref_dim_products_ (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_products was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/relationships_fact_order_items_659a11a96ff0cabfd26ac172facc0eec.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test relationships_fact_order_items_payment_type_key__payment_type_key__ref_dim_payments_ (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_payments was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/relationships_fact_order_items_a27dfe0daea7a584101a577abc5c2156.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test unique_dim_customers_customer_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_customers was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/unique_dim_customers_customer_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test relationships_fact_order_items_seller_id__seller_id__ref_dim_sellers_ (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_sellers was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/relationships_fact_order_items_9a9532dcf5fbd81824264dbef8eac61e.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test unique_dim_dates_date_key (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_dates was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/unique_dim_dates_date_key.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test unique_dim_payments_payment_type_key (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_payments was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/unique_dim_payments_payment_type_key.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test unique_dim_geolocation_geolocation_zip_code_prefix (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_geolocation was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/unique_dim_geolocation_geolocation_zip_code_prefix.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test unique_dim_products_product_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_products was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/unique_dim_products_product_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test unique_dim_sellers_seller_id (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.dim_sellers was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/unique_dim_sellers_seller_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test unique_stg_products_product_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_products was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/unique_stg_products_product_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test unique_fact_order_items_order_item_key (models/marts/schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.fact_order_items was not found in location US
+  compiled code at target/run/dbt_olist/models/marts/schema.yml/unique_fact_order_items_order_item_key.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test unique_stg_customers_customer_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_customers was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/unique_stg_customers_customer_id.sql
+[0m15:13:51  
+[0m15:13:51    Database Error in test unique_stg_sellers_seller_id (models/staging/stg_schema.yml)
+  Not found: Table calm-analogy-468216-e0:m2_prod.stg_sellers was not found in location US
+  compiled code at target/run/dbt_olist/models/staging/stg_schema.yml/unique_stg_sellers_seller_id.sql
+[0m15:13:51  
+[0m15:13:51  Done. PASS=2 WARN=0 ERROR=63 SKIP=0 TOTAL=65
+
+
+Stack Trace:
+  File "/home/ser/miniconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/execution/plan/utils.py", line 57, in op_execution_error_boundary
+    yield
+  File "/home/ser/miniconda3/envs/dagster/lib/python3.11/site-packages/dagster/_utils/__init__.py", line 392, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/home/ser/miniconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/execution/plan/compute_generator.py", line 137, in _coerce_op_compute_fn_to_iterator
+    result = invoke_compute_fn(
+             ^^^^^^^^^^^^^^^^^^
+  File "/home/ser/miniconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/execution/plan/compute_generator.py", line 117, in invoke_compute_fn
+    return fn(context, **args_to_pass) if context_arg_provided else fn(**args_to_pass)
+                                                                    ^^^^^^^^^^^^^^^^^^
+  File "/home/ser/DSAI/5m-data-m2-project-2/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/dbtpipeline.py", line 41, in pipeline_dbt_test
+    run_dbt_command(["dbt", "test", "--project-dir", DBT_PROJECT_DIR])
+  File "/home/ser/DSAI/5m-data-m2-project-2/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/dbtpipeline.py", line 21, in run_dbt_command
+    raise Exception(e.output.decode())
+
+The above exception occurred during handling of the following exception:
+subprocess.CalledProcessError: Command '['dbt', 'test', '--project-dir', '/home/ser/DSAI/5m-data-m2-project-2/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/../../../dbt_olist', '--profiles-dir', '/home/ser/DSAI/5m-data-m2-project-2/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/../../../dbt_olist']' returned non-zero exit status 1.
+
+Stack Trace:
+  File "/home/ser/DSAI/5m-data-m2-project-2/5m-data-m2-project/dagster-orchestration/dagster_orchestration/assets/dbtpipeline.py", line 16, in run_dbt_command
+    output = subprocess.check_output(full_cmd, stderr=subprocess.STDOUT).decode()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ser/miniconda3/envs/dagster/lib/python3.11/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ser/miniconda3/envs/dagster/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+[0m
