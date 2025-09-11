@@ -25,6 +25,20 @@ if 'selected_states' not in st.session_state:
 if 'selected_years' not in st.session_state:
     st.session_state.selected_years = []
 
+# Define tables globally
+PROJECT_ID = st.session_state.project_id
+DATASET = st.session_state.dataset
+TABLE_FACT = f"{PROJECT_ID}.{DATASET}.fact_order_items"
+TABLE_CUSTOMERS = f"{PROJECT_ID}.{DATASET}.dim_customers"
+TABLE_PRODUCTS = f"{PROJECT_ID}.{DATASET}.dim_products"
+TABLE_SELLERS = f"{PROJECT_ID}.{DATASET}.dim_sellers"
+TABLE_PAYMENTS = f"{PROJECT_ID}.{DATASET}.dim_payments"
+TABLE_GEOLOCATION = f"{PROJECT_ID}.{DATASET}.dim_geolocation"
+TABLE_DATES = f"{PROJECT_ID}.{DATASET}.dim_dates"
+TABLE_STG_ORDERS = f"{PROJECT_ID}.m2_ingestion.order"
+TABLE_STG_CUSTOMERS = f"{PROJECT_ID}.m2_ingestion.customer"
+TABLE_STG_SELLERS = f"{PROJECT_ID}.m2_ingestion.seller"
+
 @st.cache_resource
 def get_bq_client():
     """Initializes and caches the BigQuery client."""
@@ -135,22 +149,7 @@ with st.sidebar:
         st.rerun()
 
     if st.session_state.project_id:
-        PROJECT_ID = st.session_state.project_id
-        DATASET = st.session_state.dataset
-
-        # Define tables
-        TABLE_FACT = f"{PROJECT_ID}.{DATASET}.fact_order_items"
-        TABLE_CUSTOMERS = f"{PROJECT_ID}.{DATASET}.dim_customers"
-        TABLE_PRODUCTS = f"{PROJECT_ID}.{DATASET}.dim_products"
-        TABLE_SELLERS = f"{PROJECT_ID}.{DATASET}.dim_sellers"
-        TABLE_PAYMENTS = f"{PROJECT_ID}.{DATASET}.dim_payments"
-        TABLE_GEOLOCATION = f"{PROJECT_ID}.{DATASET}.dim_geolocation"
-        TABLE_DATES = f"{PROJECT_ID}.{DATASET}.dim_dates"
-        TABLE_STG_ORDERS = f"{PROJECT_ID}.m2_ingestion.order"
-        TABLE_STG_CUSTOMERS = f"{PROJECT_ID}.m2_ingestion.customer"
-        TABLE_STG_SELLERS = f"{PROJECT_ID}.m2_ingestion.seller"
-
-        st.success(f"Connected to **{PROJECT_ID}** and dataset **{DATASET}**.")
+        st.success(f"Connected to **{st.session_state.project_id}** and dataset **{st.session_state.dataset}**.")
 
         # Filters
         st.subheader("Filters")
