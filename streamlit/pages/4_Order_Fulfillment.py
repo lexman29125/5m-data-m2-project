@@ -8,6 +8,7 @@ from olist_report import (
     TABLE_FACT,
     TABLE_CUSTOMERS,
     TABLE_STG_ORDERS,
+    TABLE_STG_CUSTOMERS,
     TABLE_DATES,
     create_state_filter,
     get_state_filter_sql_clause,
@@ -92,17 +93,84 @@ with tab3:
     
     # We must query the raw staging table for this, as the `order_estimated_delivery_date`
     # is not available in the fact table.
+    state_filter = get_state_filter_sql_clause("c", selected_states)
+    year_filter = get_year_filter_sql_clause("d", st.session_state.selected_years)
     sql_late_delivery = f"""
     SELECT
-        CAST(SUM(CASE WHEN SAFE_CAST(order_delivered_customer_date AS DATE) > SAFE_CAST(order_estimated_delivery_date AS DATE) THEN 1 ELSE 0 END) AS FLOAT64) / COUNT(order_id) AS late_rate
-    FROM `{TABLE_STG_ORDERS}`
-    WHERE order_status = 'delivered'
+        CAST(SUM(CASE WHEN DATE(o.order_delivered_customer_date) > DATE(o.order_estimated_delivery_date) THEN 1 ELSE 0 END) AS FLOAT64) / COUNT(o.order_id) AS late_rate
+    FROM `{TABLE_STG_ORDERS}` o
+    JOIN `{TABLE_STG_CUSTOMERS}` c
+        ON o.customer_id = c.customer_id
+    JOIN `{TABLE_DATES}` d
+        ON DATE(o.order_purchase_timestamp) = d.full_date
+    WHERE o.order_status = 'delivered'
+    AND o.order_delivered_customer_date IS NOT NULL
+    AND TRIM(o.order_delivered_customer_date) != ''
+    AND o.order_estimated_delivery_date IS NOT NULL
+    AND TRIM(o.order_estimated_delivery_date) != ''
+    {state_filter} {year_filter}
     """
     df_late_delivery = run_query(sql_late_delivery)
 
     if not df_late_delivery.empty and 'late_rate' in df_late_delivery.columns:
         late_rate = df_late_delivery.iloc[0]['late_rate']
         st.metric("Late Delivery Rate", f"{late_rate:.2%}")
-        st.info("This metric is calculated from the raw staging data because the final fact table does not contain the required date fields.")
     else:
         st.warning("No data available to calculate the late delivery rate.")
+
+    # New section for late orders breakdown
+    st.subheader("Late Orders Breakdown")
+    
+    sql_late_breakdown = f"""
+    SELECT
+        FORMAT_DATE('%Y-%m', DATE(o.order_delivered_customer_date)) AS month,
+        CASE
+            WHEN DATE_DIFF(DATE(o.order_delivered_customer_date), DATE(o.order_estimated_delivery_date), DAY) <= 5 THEN '1-5 days late'
+            WHEN DATE_DIFF(DATE(o.order_delivered_customer_date), DATE(o.order_estimated_delivery_date), DAY) <= 10 THEN '6-10 days late'
+            WHEN DATE_DIFF(DATE(o.order_delivered_customer_date), DATE(o.order_estimated_delivery_date), DAY) <= 15 THEN '11-15 days late'
+            WHEN DATE_DIFF(DATE(o.order_delivered_customer_date), DATE(o.order_estimated_delivery_date), DAY) <= 20 THEN '16-20 days late'
+            ELSE '>20 days late'
+        END AS days_late_category,
+        COUNT(o.order_id) AS num_late_orders
+    FROM `{TABLE_STG_ORDERS}` o
+    JOIN `{TABLE_STG_CUSTOMERS}` c
+        ON o.customer_id = c.customer_id
+    JOIN `{TABLE_DATES}` d
+        ON DATE(o.order_purchase_timestamp) = d.full_date
+    WHERE
+        o.order_status = 'delivered'
+        AND o.order_delivered_customer_date IS NOT NULL
+        AND TRIM(o.order_delivered_customer_date) != ''
+        AND o.order_estimated_delivery_date IS NOT NULL
+        AND TRIM(o.order_estimated_delivery_date) != ''
+        AND DATE(o.order_delivered_customer_date) > DATE(o.order_estimated_delivery_date)
+        {state_filter} {year_filter}
+    GROUP BY 1, 2
+    ORDER BY 1, 2
+    """
+    df_late_breakdown = run_query(sql_late_breakdown)
+
+    if not df_late_breakdown.empty:
+        category_order = ['1-5 days late', '6-10 days late', '11-15 days late', '16-20 days late', '>20 days late']
+        color_map = {
+            '1-5 days late': 'rgb(0, 0, 255)',      # Deep Blue
+            '6-10 days late': 'rgb(173, 216, 230)', # Light Blue
+            '11-15 days late': 'rgb(255, 215, 0)',  # Gold (Yellow)
+            '16-20 days late': 'rgb(255, 69, 0)',   # Orange-Red
+            '>20 days late': 'rgb(178, 34, 34)'     # Firebrick (Dark Red)
+        }
+
+        fig_breakdown = px.bar(
+            df_late_breakdown,
+            x="month",
+            y="num_late_orders",
+            color="days_late_category",
+            category_orders={"days_late_category": category_order},
+            color_discrete_map=color_map,
+            title="Late Orders by Month and Days Late",
+            labels={"month": "Month", "num_late_orders": "Number of Late Orders", "days_late_category": "Days Late"},
+        )
+        fig_breakdown.update_layout(barmode='stack')
+        st.plotly_chart(fig_breakdown, use_container_width=True)
+    else:
+        st.warning("No data found for late order breakdown.")
